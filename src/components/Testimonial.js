@@ -1,6 +1,6 @@
 import  { useState } from 'react';
-import './Testimonial.css';
-
+import '../styles/Testimonial.css';
+import Testimonial from '../styles/Testimonial.css';
 const testimonials = [
   {
     text: "I landed my dream job thanks to the practical skills I learned through their courses.",

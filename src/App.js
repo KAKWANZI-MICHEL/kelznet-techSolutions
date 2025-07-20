@@ -1,15 +1,15 @@
 
 import './App.css';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+import Home from './pages/Home';
 import Footer from './components/Footer';
-import Testimonial from './components/Testimonial';
+
 
 function App() {
   return (
     <>
       <Navbar />
-      <Hero />
+      <Home/>
       <Footer />
     
     </>

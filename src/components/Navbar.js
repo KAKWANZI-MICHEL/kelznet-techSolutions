@@ -1,5 +1,5 @@
-
-import './Navbar.css';
+// import  from '../styles/Navbar.css';
+import '../styles/Navbar.css';
 
 
 function Navbar() {

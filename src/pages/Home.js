@@ -1,5 +1,5 @@
 
-import './Home.css';
+import '../styles/Home.css';
 import heroImage from '../Image/white man.png'; // Replace with your actual image
 
 function Home() {
