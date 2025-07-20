@@ -1,0 +1,151 @@
+/* General Reset & Styling */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.highlight {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  color: #007bff;
+}
+
+/* About Section */
+.about-section {
+  margin-top: 40px;
+}
+
+.about-section h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.about-section p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Content Layout */
+.content-layout {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.image-container {
+  flex: 1 1 300px;
+  margin-right: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.text-container {
+  flex: 2 1 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-container h3 {
+  margin-top: 0;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.text-container p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Expert Team Badge */
+.expert-team {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 30px;
+}
+
+.badge {
+  background-color: #ff6347;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Ready To Get Started */
+.ready-section {
+  margin-top: 40px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.ready-section h3 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+.contact-btn {
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contact-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Footer */
+.footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 20px 0;
+  color: #777;
+  font-size: 14px;
+}
