@@ -1,0 +1,175 @@
+/* Sidebar base styles (responsive) */
+.admin-dashboard {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Sidebar */
+.dashboard-sidebar {
+  width: 100%;
+  max-width: 280px;
+  background: #1f2a44;
+  color: #e9e9f1;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid rgba(255,255,255,.08);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  align-self: start;
+  transition: transform 0.25s ease;
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.brand-icon {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: linear-gradient(135deg, #4fc3f7, #0b5bd3);
+  display: inline-block;
+}
+.brand-name {
+  font-weight: 700;
+  letter-spacing: .4px;
+}
+.sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border: none; background: #2e3a6b; color: #fff;
+  border-radius: 6px; cursor: pointer;
+}
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0.75rem 0;
+  margin: 0;
+}
+.sidebar-nav li {
+  padding: 0.75rem 1rem;
+  cursor: default;
+  color: #e6e6f2;
+}
+.sidebar-nav li.active {
+  background: rgba(255,255,255,.08);
+  color: #fff;
+}
+.sidebar-footer {
+  margin-top: auto;
+  padding: 1rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+/* Content area (header, nav, main) adjusted to sit beside sidebar */
+.content-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #2c3e50 0%, #1b2a3a 100%);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
+/* Top navigation (kept for compatibility) */
+.dashboard-nav {
+  background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%);
+  color: white;
+}
+.dashboard-nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0.9rem 2rem;
+  gap: 1.25rem;
+}
+.dashboard-nav li {
+  padding: 0.5rem 0;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #eaf2f8;
+}
+.dashboard-nav li.active {
+  border-bottom: 2px solid #3498db;
+}
+
+/* Main content area container tweaks */
+.dashboard-main {
+  padding: 2rem;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .dashboard-main { padding-left: 3rem; padding-right: 3rem; }
+}
+.main-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.75rem;
+}
+@media (max-width: 1024px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .admin-dashboard {
+    grid-template-columns: 0 1fr; /* hide sidebar via transform if desired */
+  }
+  .sidebar-nav { display: none; } /* optionally hide on small screens */
+}
+
+/* Cards and surfaces (keep existing look) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 2rem;
+}
+.stat-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.6rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+  text-align: center;
+}
+.stat-card h3 {
+  color: #7f8c8d;
+  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+.bookings-section {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,.08);
+}
+.booking-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #ecf0f1;
+}
+.booking-item:last-child { border-bottom: none; }
+
+/* Utilities for responsiveness */
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+}

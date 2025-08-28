@@ -1,28 +1,30 @@
-import  { useState } from 'react';
-import '../styles/Testimonial.css';
-import Testimonial from '../styles/Testimonial.css';
+
+import { useState } from 'react';
+import '../styles/Testimonial.css'; // ✅ Only import CSS like this
+
 const testimonials = [
   {
     text: "I landed my dream job thanks to the practical skills I learned through their courses.",
     name: "Emily Kisitu",
     title: "Software Engineer",
-    image: require('../Image/white man.png'), // Replace with your image
+    image: require('../Image/emily_ki.png'),
   },
   {
     text: "The courses transformed the way I approach projects. I'm now confident at work!",
     name: "Sarah Nambuya",
     title: "Frontend Developer",
-    image: require('../Image/white man.png'),
+    image: require('../Image/sarah_na.png'),
   },
   {
-    text: "This training gave me all I needed to excel in tech.",
-    name: "John Doe",
+    text: "This training equipped me with practical skills, confidence, and a clear path toward a successful career in the industry",
+    name: "John Khawa",
     title: "IT Specialist",
-    image: require('../Image/white man.png'),
+    image: require('../Image/khawa_jo.png'),
   }
+  
 ];
 
-function TestimonialCarousel() {
+function Testimonial() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleDotClick = (index) => {
@@ -61,4 +63,4 @@ function TestimonialCarousel() {
   );
 }
 
-export default Testimonial;
+export default Testimonial; // ✅ Make sure this is the default export

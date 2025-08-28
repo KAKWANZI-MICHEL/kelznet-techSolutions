@@ -1,82 +1,86 @@
+import React from "react";
+import "../styles/Services.css";
 
-import './ServicesPage.css';
+const OurServices = () => {
+  const services = [
+    {
+      id: 1,
+      title: "Computer Repair",
+      icon: "fas fa-laptop",
+      description:
+        " We diagnose, troubleshoot, and fix hardware or software issues, restoring optimal performance, preventing future problems, and ensuring the device operates efficiently and reliably.",
+      link: "#",
+    },
+    {
+      id: 2,
+      title: "Network setup",
+      icon: "fas fa-network-wired",
+      description:
+        "We Design, install, and configure wired or wireless connections, enabling secure, reliable communication and data sharing between devices, systems, and the internet.",
+      link: "#",
+    },
+    {
+      id: 3,
+      title: "Software Insatllation",
+      icon: "fas fa-download",
+      description:"Professional process of setting up, softwares on a client’s computer or network, ensuring it runs correctly, and is ready for immediate use often including updates for smooth operation."
+        ,
+      link: "#",
+    },
+    {
+      id: 4,
+      title: "ICT Training",
+      icon: "fas fa-chalkboard-teacher",
+      description:
+        "We provide individuals or teams with practical skills and knowledge in information and communication technology, enhancing efficiency, productivity, and confidence in using digital tools effectively.",
+      link: "#",
+    },
+  ];
 
-const ServicesPage = () => {
   return (
-    <div className="services-page">
-      {/* Header */}
-      <header className="header">
-        <h1>
-          <span className="highlight">KelzNet</span> Tech Solutions
-        </h1>
-        <nav>
-          <a href="#">Home</a>
-          <a href="#">Services</a>
-          <a href="#">About</a>
-          <a href="#">Contact us</a>
-        </nav>
-      </header>
-
-      {/* Services Section */}
-      <section className="services-section">
-        <h2 className="section-title">Our Services</h2>
-        <div className="services-grid">
-          {/* Service Card */}
-          <div className="service-card">
-            <div className="icon-container">
-              <svg className="icon" viewBox="0 0 64 64" width="40" height="40" fill="#333">
-                <circle cx="32" cy="32" r="30" stroke="#333" strokeWidth="4" fill="none" />
-                <path d="M20 24 L28 32 L20 40" stroke="#f00" strokeWidth="4" fill="none" />
-                <circle cx="32" cy="12" r="4" fill="#f00" />
-              </svg>
-            </div>
-            <h3 className="service-title">Computer Repairs</h3>
-            <p className="service-desc">Hardware diagnostics, component replacement, and system optimization</p>
-          </div>
-          {/* Service Card */}
-          <div className="service-card">
-            <div className="icon-container">
-              <svg className="icon" viewBox="0 0 64 64" width="40" height="40" fill="#333">
-                <rect x="16" y="24" width="32" height="20" stroke="#f00" strokeWidth="4" fill="none" />
-                <line x1="16" y1="24" x2="16" y2="44" stroke="#f00" strokeWidth="4" />
-                <line x1="48" y1="24" x2="48" y2="44" stroke="#f00" strokeWidth="4" />
-                <line x1="16" y1="32" x2="48" y2="32" stroke="#f00" strokeWidth="4" />
-              </svg>
-            </div>
-            <h3 className="service-title">Software Installation</h3>
-            <p className="service-desc">Operating systems, applications, and software configuration services</p>
-          </div>
-          {/* Service Card */}
-          <div className="service-card">
-            <div className="icon-container">
-              <svg className="icon" viewBox="0 0 64 64" width="40" height="40" fill="#333">
-                <circle cx="32" cy="32" r="6" fill="#f00" />
-                <path d="M16 48 L48 48 L48 56 L16 56 Z" fill="#f00" />
-              </svg>
-            </div>
-            <h3 className="service-title">Network Set-up</h3>
-            <p className="service-desc">WIFI configuration, router setup, and network security implementation</p>
-          </div>
-          {/* Service Card */}
-          <div className="service-card">
-            <div className="icon-container">
-              <svg className="icon" viewBox="0 0 64 64" width="40" height="40" fill="#333">
-                <rect x="12" y="24" width="40" height="24" stroke="#f60" strokeWidth="4" fill="none" />
-                <path d="M12 24 L32 12 L52 24" stroke="#f60" strokeWidth="4" fill="none" />
-              </svg>
-            </div>
-            <h3 className="service-title">ICT Training</h3>
-            <p className="service-desc">Computer literacy, software training, and digital skills development</p>
-          </div>
-        </div>
+    <div className="container">
+      {/* Hero Intro Section */}
+      <section className="services-intro">
+        <h1>Our Expert Services</h1>
+        <p className="intro-text">
+          We provide high-quality, reliable technology solutions tailored to your needs. With years of 
+          expertise and a commitment to excellence, we deliver innovation one project at a time
+        </p>
       </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <p>&copy; 2024 KelzNet Tech Solutions. All rights reserved.</p>
-      </footer>
+      {/* Services Header */}
+      <div className="services-header">OUR SERVICES</div>
+
+      {/* Services Grid */}
+      <div className="service-section">
+        {services.map((service) => (
+          <div key={service.id} className="service-card">
+            <div className="service-icon">
+              <i className={service.icon}></i>
+            </div>
+            
+            <h3 className="service-title">{service.title}</h3>
+            <p className="service-description">{service.description}</p>
+            <a href={service.link} className="service-link">
+              Book Now →
+            </a>
+          </div>
+        ))}
+      </div>
+
+      {/* Call to Action (CTA) Section */}
+      <section className="cta-section">
+        <h2>Ready to Transform Your Space?</h2>
+        <p>
+          Contact us today for a free consultation and estimate. We’re here to help you with all your home improvement needs.
+        </p>
+        <div className="cta-buttons">
+          <a href="/contact" className="btn-primary1">Contact Us</a>
+          
+        </div>
+      </section>
     </div>
   );
 };
 
-export default ServicesPage;
+export default OurServices;

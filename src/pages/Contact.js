@@ -1,67 +1,59 @@
 
-import './RequestServicePage.css';
+import '../styles/Contact.css';
+import { FaPhoneAlt, FaMapMarkerAlt, FaClock, FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
 
-const RequestServicePage = () => {
+const ContactUs = () => {
   return (
-    <div className="request-page">
-      {/* Header */}
-      <header className="header">
-        <h1><span className="highlight">KelzNet</span> Tech Solutions</h1>
-        <nav>
-          <a href="#">Home</a>
-          <a href="#">Services</a>
-          <a href="#">About</a>
-          <a href="#">Contact Us</a>
-        </nav>
-      </header>
-
-      {/* Request Service Form */}
-      <section className="request-section">
-        <h2 className="section-title">Request Service</h2>
-        <form className="request-form">
-          {/* Personal Details */}
-          <div className="form-group">
-            <label>Full Name</label>
-            <input type="text" placeholder="Enter full name" />
+    <div className="contact-container">
+      <div className="contact-form">
+        <h4>We would love to hear from you!</h4>
+        <h1>Contact Us</h1>
+        <form>
+          <div className="input-row">
+            <input type="email" placeholder="Enter a valid email address" required />
+            <input type="text" placeholder="Enter your Name" required />
           </div>
-          <div className="form-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="Enter email address" />
+          <div className="input-row">
+            <input type="text" placeholder="Enter your address" required />
+            <input type="tel" placeholder="Enter your phone (e.g. +256)" required />
           </div>
-          <div className="form-group">
-            <label>Phone Number</label>
-            <input type="tel" placeholder="Enter phone number" />
-          </div>
-          <div className="form-group">
-            <label>Company/Organisation</label>
-            <input type="text" placeholder="Enter company name" />
-          </div>
-
-          {/* Services Needed */}
-          <div className="services-needed">
-            <label>Services Needed (Select all that apply)</label>
-            <div className="checkbox-group">
-              <label><input type="checkbox" /> Computer Repair</label>
-              <label><input type="checkbox" /> Network setup</label>
-              <label><input type="checkbox" /> Software Installation</label>
-              <label><input type="checkbox" /> ICT Training</label>
-            </div>
-          </div>
-
-          {/* Additional Details */}
-          <div className="form-group">
-            <label>Additional Details</label>
-            <textarea placeholder="Please describe your specific needs, timeline, or any other relevant information." rows={4}></textarea>
-          </div>
-
-          {/* Submit Button */}
-          <button type="submit" className="submit-btn">Send Request</button>
+          <textarea placeholder="Enter your message" required></textarea>
+          <button type="submit">SUBMIT</button>
         </form>
-      </section>
+        <div className="social-icons">
+          <FaFacebookF />
+          <FaTwitter />
+          <FaInstagram />
+        </div>
+      </div>
 
-      {/* Footer could be added here if needed */}
+      <div className="contact-details">
+        <div className="detail">
+          <FaPhoneAlt className="icon" />
+          <div>
+            <strong>CALL US</strong><br />
+          +256 771 026689
+          </div>
+        </div>
+
+        <div className="detail">
+          <FaMapMarkerAlt className="icon" />
+          <div>
+            <strong>LOCATION</strong><br />
+            Busega,Kampala, Uganda
+          </div>
+        </div>
+
+        <div className="detail">
+          <FaClock className="icon" />
+          <div>
+            <strong>BUSINESS HOURS</strong><br />
+            Mon – Fri ….. 10 am – 8 pm, Sat, Sun …… Closed
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default RequestServicePage;
+export default ContactUs;

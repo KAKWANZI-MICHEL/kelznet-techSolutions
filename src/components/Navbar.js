@@ -1,23 +1,36 @@
-// import  from '../styles/Navbar.css';
 import '../styles/Navbar.css';
+import { Link } from 'react-router-dom';
+import logo from '../Image/logo_nav.png';
+import { motion } from 'framer-motion';
 
-
-function Navbar() {
+const Navbar = () => {
   return (
-    <nav className="navbar">
+    <motion.nav
+      className="navbar"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.6 }}
+    >
       <div className="logo">
-        <span className="logo-icon">🔶</span>
-        <span className="logo-text">KelzNet Tech <span className="highlight">solutions</span></span>
+        <span className="logo-icon">
+          <img src={logo} alt="Logo" className="logo-image" />
+        </span>
+        <span className="logo-text">
+          KelzNet Tech Solutions<span className="highlight"></span>
+        </span>
       </div>
       <ul className="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact us</a></li>
+        <li><Link to="/">Home</Link></li> 
+        <li><Link to="/services">Services</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/contact">Contact Us</Link></li>
+        <li><Link to="/bookingForm">BookingForm</Link></li>
+        <li><Link to="/testimonial">Testimonial</Link></li>
+        
       </ul>
-    </nav>
+    </motion.nav>
   );
-}
+};
 
 export default Navbar;
-

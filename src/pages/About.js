@@ -1,56 +1,55 @@
 
-import '../pages/About';
 
-const KelzNetPage = () => {
+import '../styles/About.css';
+import network_set from '../Image/network_set.png';
+import training_ict from '../Image/training_ict.png';
+import comp_repair from '../Image/comp_repair.png';
+
+
+
+const AboutUs = () => {
+  
+  const sections = [
+    {
+      id: 1,
+      title: "Mission",
+      description:
+        "To provide innovative, affordable, and reliable IT services tailored to individuals and businesses. We aim to simplify technology, ensuring every client receives practical, efficient solutions to grow in today’s digital world.",
+      imageUrl: network_set,
+    },
+    {
+      id: 2,
+      title: "Values",
+      description:
+        "We uphold integrity, innovation, and customer satisfaction. Our team is driven by excellence, transparency, and a passion for solving problems with reliable, future-ready technology that builds strong relationships and delivers lasting impact.",
+      imageUrl: training_ict,
+    },
+    {
+      id: 3,
+      title: "Vision",
+      description:
+        "To be a trusted leader in delivering smart, scalable tech solutions in Uganda, empowering clients with cutting-edge tools, seamless support, and unmatched service excellence that drives digital transformation and long-term growth.",
+      imageUrl: comp_repair,
+    },
+  ];
+
   return (
-    <div className="container">
-      {/* Header */}
-      <header className="header">
-        <h1><span className="highlight">KelzNet</span> Tech Solutions</h1>
-        <nav className="nav">
-          <a href="#">Home</a>
-          <a href="#">Services</a>
-          <a href="#">About</a>
-          <a href="#">Contact us</a>
-        </nav>
-      </header>
-
-      {/* Main Content */}
-      <section className="about-section">
-        <h2>About KelzNet Tech Solutions</h2>
-        <p>Your trusted partner in technology solutions, delivering excellence and <span className="highlight">innovation</span>.</p>
-        <div className="content-layout">
+    <div className="contained">
+      <h1>About Us</h1>
+      <p className='about'>We provide services including lab set-up, computer repair, network setup, software Installation which caters to tech needs with expertise in these areas.</p>
+      {sections.map((section) => (
+        <div key={section.id} className="section">
           <div className="image-container">
-            <img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68" alt="Technician" />
+            <img src={section.imageUrl} alt={section.title} />
           </div>
           <div className="text-container">
-            <h3>KelzNet Tech Solutions</h3>
-            <p>
-              KelzNet Tech Solutions is a rapidly growing IT company dedicated to providing comprehensive technology services to businesses and individuals. We specialize in bridging the gap between complex technology and practical solutions that drive success.
-            </p>
-            <p>
-              Our experienced team of certified technicians and IT professionals brings years of expertise to every project. We pride ourselves on delivering reliable, cost-effective solutions that exceed expectations while maintaining the highest standards of service quality.
-            </p>
+            <h2 className="title1">{section.title}</h2>
+            <p className="description">{section.description}</p>
           </div>
         </div>
-
-        {/* Expert Team Badge & Call-to-Action */}
-        <div className="expert-team">
-          <span className="badge">Expert Team</span>
-        </div>
-        <div className="ready-section">
-          <h3>Ready to Get Started?</h3>
-          <p>Let's discuss how we can help transform your technology challenges into opportunities</p>
-          <button className="contact-btn">Contact us Today</button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <p>&copy; 2024 KelzNet Tech Solutions. All rights reserved.</p>
-      </footer>
+      ))}
     </div>
   );
 };
 
-export default KelzNetPage;
+export default AboutUs;
