@@ -12,23 +12,7 @@
   overflow-x: hidden;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  background-color: #d9ab9c; /* optional */
-  border-radius: 8px; /* optional */
-  box-shadow: 0 2px 8px rgba(255, 0, 0, 0.1); /* optional */
-}
-
-.card .icon {
-  font-size: 30px;
-  margin-bottom: 10px;
-  color: #381c02;
-}
+/* Service cards are styled below - this duplicate definition is removed */
 
 
 body, html {
@@ -64,6 +48,75 @@ body, html {
   justify-content: center;
 }
 
+/* ===== Floating Particles Container ===== */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(2px 2px at 20% 30%, #f7c66b, transparent),
+    radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90% 40%, #f7c66b, transparent),
+    radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 80% 10%, #f7c66b, transparent);
+  background-size: 300px 300px, 400px 400px, 200px 200px, 350px 350px, 250px 250px;
+  animation: floating-particles 20s ease-in-out infinite;
+  opacity: 0.7;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ===== Floating Particles Animation ===== */
+@keyframes floating-particles {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(-10px) translateX(-15px) rotate(240deg);
+  }
+}
+
+/* ===== Additional Tech Particles ===== */
+.hero::after {
+  content: '{ } < /> ⚡ ⚙️ 💻 🔗 📱 ⭐ ◆ ▲ ◉';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-size: 12px;
+  color: rgba(247, 198, 107, 0.4);
+  white-space: pre-wrap;
+  overflow: hidden;
+  animation: tech-symbols 25s linear infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ===== Tech Symbols Animation ===== */
+@keyframes tech-symbols {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
 /* Zoom animation for hero */
 @keyframes zoomInOut {
   0%, 100% { transform: scale(1); }
@@ -93,8 +146,80 @@ body, html {
   padding: 40px 20px;
   max-width: 1200px;
   width: 100%;
-  z-index: 2;
+  z-index: 10;
   position: relative;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+/* ===== Scroll Animation Classes ===== */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s ease-out;
+}
+
+.fade-in-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.8s ease-out;
+}
+
+.scale-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===== Staggered Animation Delays ===== */
+.scale-in:nth-child(1) { transition-delay: 0.1s; }
+.scale-in:nth-child(2) { transition-delay: 0.2s; }
+.scale-in:nth-child(3) { transition-delay: 0.3s; }
+.scale-in:nth-child(4) { transition-delay: 0.4s; }
+
+.fade-in-up:nth-child(1) { transition-delay: 0.1s; }
+.fade-in-up:nth-child(2) { transition-delay: 0.2s; }
+.fade-in-up:nth-child(3) { transition-delay: 0.3s; }
+
+.choose-card:nth-child(1) { transition-delay: 0.2s; }
+.choose-card:nth-child(2) { transition-delay: 0.4s; }
+.choose-card:nth-child(3) { transition-delay: 0.6s; }
+
+/* ===== Hero Content Animations ===== */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-content h1,
@@ -125,26 +250,48 @@ body, html {
   line-height: 1.6;
 }
 
-/* ===== Buttons ===== */
+/* ===== Enhanced Buttons ===== */
 .btn-primary,
 .btn-secondary {
-  padding: 11px;
-
-  border-radius: 10px;
+  padding: 12px 24px;
+  border-radius: 50px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
-font-size: large;
+  transition: all 0.4s ease;
+  font-size: large;
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .btn-primary {
-  background: #f7f4f2;
+  background: linear-gradient(135deg, #f7f4f2, #e8e0d8);
   border: none;
   color: #220a02;
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
 .btn-primary:hover {
-  background: #ca9c79;
+  background: linear-gradient(135deg, #ca9c79, #b8906d);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(247, 198, 107, 0.4);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
 }
 
 .btn-secondary {
@@ -156,6 +303,18 @@ font-size: large;
 .btn-secondary:hover {
   background: #291404;
   color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(41, 20, 4, 0.4);
+}
+
+/* ===== Button Glow Animation ===== */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2), 0 0 20px rgba(247, 198, 107, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2), 0 0 30px rgba(247, 198, 107, 0.6);
+  }
 }
 
 /* ===== Hero Image ===== */
@@ -197,29 +356,54 @@ font-size: large;
   background: #fff;
   border-left: 5px solid #331703;
   padding: 24px;
-  text-align: left;
+  text-align: center;
   border-radius: 12px;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   font-weight: 600;
   color: #030000;
+  position: relative;
+  overflow: hidden;
 }
 
-.card h3 {
-  font-size: 20px;
-  margin-bottom: 12px;
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(247, 198, 107, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.card:hover::before {
+  left: 100%;
+}
+
+.card .icon {
+  font-size: 2.5rem;
+  color: #331703;
+  margin-bottom: 1rem;
+  transition: all 0.4s ease;
+}
+
+.card span {
+  display: block;
+  font-size: 16px;
   color: #1f2937;
-}
-
-.card p {
-  font-size: 15px;
-  color: #4b4b4b;
-  line-height: 1.5;
+  font-weight: 600;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(51, 23, 3, 0.2);
+  border-left-color: #f7c66b;
+}
+
+.card:hover .icon {
+  transform: scale(1.2) rotateY(360deg);
+  color: #f7c66b;
 }
 
 .services-text {
