@@ -112,11 +112,8 @@ const DashboardContent = ({ activePage }) => {
       });
     } catch (error) {
       console.error('Error fetching users:', error);
-      // Set default users count if API fails
-      setStats(prevStats => ({
-        ...prevStats,
-        users: 0
-      }));
+      // Keep existing users count if API fails (don't reset to 0)
+      // This prevents dashboard from showing 0 during network issues
     }
   }, [calculateTrends, previousStats]);
 
@@ -131,11 +128,7 @@ const DashboardContent = ({ activePage }) => {
       }));
     } catch (error) {
       console.error('Error fetching services:', error);
-      // Set default services count if API fails
-      setStats(prevStats => ({
-        ...prevStats,
-        services: 0
-      }));
+      // Keep existing services count if API fails
     }
   }, []);
 
@@ -181,7 +174,7 @@ const DashboardContent = ({ activePage }) => {
     fetchBookings();
     fetchMessages();
     
-    // Refresh data every 10 seconds
+    // Refresh data every 30 seconds (reduced from 10 to prevent server overload)
     const interval = setInterval(() => {
       // Store current stats as previous stats before fetching new data
       setPreviousStats({
@@ -194,7 +187,7 @@ const DashboardContent = ({ activePage }) => {
       fetchServices();
       fetchBookings();
       fetchMessages();
-    }, 10000);
+    }, 30000);
     
     return () => clearInterval(interval);
   }, [fetchUsers, fetchServices, fetchBookings, fetchMessages, stats.users, stats.bookings, stats.messages]);

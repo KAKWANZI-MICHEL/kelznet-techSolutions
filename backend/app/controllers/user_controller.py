@@ -36,10 +36,10 @@ def create_user():
 
     try:
         new_user = User(   # Create new User object with provided data
-            fullName=fullName,
+            full_name=fullName,
             email=email,
-            phoneNumber=phoneNumber,
-            company=company
+            password_hash='default_password_hash',  # You should hash a default password
+            role='client'
         )
         db.session.add(new_user)   # Add new user to DB session
         db.session.commit()   # Commit transaction to save user
@@ -53,11 +53,10 @@ def create_user():
 def get_all_users():
     users = User.query.all()   # Query all user records from DB
     result = [{   # Create list of user dicts
-        "userid": user.userid,
-        "fullName": user.fullName,
+        "userId": user.userId,
+        "fullName": user.full_name,
         "email": user.email,
-        "phoneNumber": user.phoneNumber,
-        "company": user.company,
+        "role": user.role,
         "created_at": user.created_at,
         "updated_at": user.updated_at
     } for user in users]   # List comprehension to map users to dictionaries
@@ -70,11 +69,10 @@ def get_user(user_id):
     if not user:   # If user not found
         return jsonify({"error": "User not found"}), 404   # Return error
     return jsonify({   # Return user details as JSON
-        "userid": user.userid,
-        "fullName": user.fullName,
+        "userId": user.userId,
+        "fullName": user.full_name,
         "email": user.email,
-        "phoneNumber": user.phoneNumber,
-        "company": user.company,
+        "role": user.role,
         "created_at": user.created_at,
         "updated_at": user.updated_at
     }), 200
@@ -94,18 +92,16 @@ def update_user(user_id):
     except:
         return jsonify({"error": "Invalid JSON format"}), 400   # Return error if JSON invalid
 
-    fullName = data.get('fullName', user.fullName)   # Get new fullName or keep old
+    full_name = data.get('fullName', user.full_name)   # Get new fullName or keep old
     email = data.get('email', user.email)   # Get new email or keep old
 
-    if not fullName or not email:   # Validate required fields
+    if not full_name or not email:   # Validate required fields
         return jsonify({"error": "Full name and email cannot be empty"}), 400
     if not is_valid_email(email):   # Validate email format
         return jsonify({"error": "Invalid email format"}), 400
 
-    user.fullName = fullName   # Update user fullName
+    user.full_name = full_name   # Update user fullName
     user.email = email   # Update user email
-    user.phoneNumber = data.get('phoneNumber', user.phoneNumber)   # Update phone number if provided
-    user.company = data.get('company', user.company)   # Update company if provided
 
     try:
         db.session.commit()   # Commit changes to DB
