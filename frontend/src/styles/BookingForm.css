@@ -348,11 +348,57 @@
 
 .service-select {
   cursor: pointer;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="5" viewBox="0 0 4 5"><path fill="%23f7c66b" d="m0 0 2 2 2-2z"/></svg>');
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(247, 198, 107, 0.3);
+  border-radius: 12px;
+  padding: 1rem 3rem 1rem 1.5rem;
+  font-size: 1rem;
+  color: #2d3748;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: 
+    linear-gradient(45deg, transparent 50%, #f7c66b 50%),
+    linear-gradient(135deg, #f7c66b 50%, transparent 50%);
+  background-position: 
+    calc(100% - 20px) calc(1rem + 2px),
+    calc(100% - 15px) calc(1rem + 2px);
+  background-size: 
+    5px 5px,
+    5px 5px;
   background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 12px;
-  padding-right: 3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.service-select:focus {
+  outline: none;
+  border-color: #f7c66b;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 3px rgba(247, 198, 107, 0.1);
+  transform: translateY(-1px);
+}
+
+.service-select:hover {
+  border-color: rgba(247, 198, 107, 0.5);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Custom dropdown options styling */
+.service-select option {
+  background: #fff;
+  color: #2d3748;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.service-select option:checked {
+  background: linear-gradient(135deg, #f7c66b, #ca9c79);
+  color: #fff;
+}
+
+.service-select option:hover {
+  background: rgba(247, 198, 107, 0.1);
 }
 
 .input-group input::placeholder,
@@ -544,7 +590,7 @@
   color: #1a202c;
   font-size: 1.1rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .booking-benefits ul {
@@ -554,11 +600,45 @@
 }
 
 .booking-benefits ul li {
-  color: #4a5568;
+  position: relative;
+  padding: 0.75rem 0;
+  padding-left: 2.5rem;
+  color: #2d3748;
   font-size: 0.95rem;
   line-height: 1.6;
-  margin-bottom: 0.5rem;
   font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.booking-benefits ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #f7c66b, #ca9c79);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 3px 10px rgba(247, 198, 107, 0.3);
+  transition: all 0.3s ease;
+}
+
+.booking-benefits ul li:hover {
+  color: #1a202c;
+  transform: translateX(5px);
+}
+
+.booking-benefits ul li:hover::before {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 5px 15px rgba(247, 198, 107, 0.5);
 }
 
 /* ===== Modern CTA Section ===== */
