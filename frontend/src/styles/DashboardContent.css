@@ -10,11 +10,11 @@
 .dashboard-sidebar {
   width: 100%;
   max-width: 280px;
-  background: #1f2a44;
-  color: #e9e9f1;
+  background: #1e1200;
+  color: #f5f5f5;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgba(255,255,255,.08);
+  border-right: 1px solid rgba(247, 198, 107, 0.1);
   position: sticky;
   top: 0;
   height: 100vh;
@@ -26,11 +26,11 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  border-bottom: 1px solid rgba(247, 198, 107, 0.2);
 }
 .brand-icon {
   width: 28px; height: 28px; border-radius: 6px;
-  background: linear-gradient(135deg, #4fc3f7, #0b5bd3);
+  background: linear-gradient(135deg, #f7c66b, #ca9c79);
   display: inline-block;
 }
 .brand-name {
@@ -42,7 +42,7 @@
   align-items: center;
   justify-content: center;
   width: 36px; height: 36px;
-  border: none; background: #2e3a6b; color: #fff;
+  border: none; background: #3a2209; color: #fff;
   border-radius: 6px; cursor: pointer;
 }
 .sidebar-nav ul {
@@ -53,16 +53,16 @@
 .sidebar-nav li {
   padding: 0.75rem 1rem;
   cursor: default;
-  color: #e6e6f2;
+  color: #f5f5f5;
 }
 .sidebar-nav li.active {
-  background: rgba(255,255,255,.08);
-  color: #fff;
+  background: rgba(247, 198, 107, 0.2);
+  color: #f7c66b;
 }
 .sidebar-footer {
   margin-top: auto;
   padding: 1rem;
-  border-top: 1px solid rgba(255,255,255,.08);
+  border-top: 1px solid rgba(247, 198, 107, 0.2);
 }
 
 /* Content area (header, nav, main) adjusted to sit beside sidebar */
@@ -78,7 +78,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, #2c3e50 0%, #1b2a3a 100%);
+  background: linear-gradient(135deg, #271602 0%, #1e1200 100%);
   color: white;
   position: sticky;
   top: 0;
@@ -86,9 +86,9 @@
   box-shadow: 0 2px 8px rgba(0,0,0,.15);
 }
 
-/* Top navigation (kept for compatibility) */
+/* Top navigation (updated to match project colors) */
 .dashboard-nav {
-  background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%);
+  background: linear-gradient(180deg, #271602 0%, #1e1200 100%);
   color: white;
 }
 .dashboard-nav ul {
@@ -101,10 +101,10 @@
   padding: 0.5rem 0;
   cursor: pointer;
   border-radius: 6px;
-  color: #eaf2f8;
+  color: #f5f5f5;
 }
 .dashboard-nav li.active {
-  border-bottom: 2px solid #3498db;
+  border-bottom: 2px solid #f7c66b;
 }
 
 /* Main content area container tweaks */
@@ -145,7 +145,7 @@
   text-align: center;
 }
 .stat-card h3 {
-  color: #7f8c8d;
+  color: #ca9c79;
   margin-bottom: 0.6rem;
   font-size: 0.85rem;
   text-transform: uppercase;
@@ -153,7 +153,7 @@
 .stat-number {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #2c3e50;
+  color: #271602;
 }
 .bookings-section {
   background-color: #fff;
