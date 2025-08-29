@@ -60,7 +60,7 @@ kelznet-techSolutions/
 
 - `npm run dev` - Start both frontend and backend in development mode
 - `npm run setup` - Install concurrently and all dependencies
-- `npm run install` - Install both frontend and backend dependencies
+- `npm run install-deps` - Install both frontend and backend dependencies
 - `npm run build` - Build frontend for production
 
 ### Frontend Scripts

@@ -10,9 +10,9 @@
     "frontend:install": "cd frontend && npm install",
     "backend:dev": "cd backend && python run.py",
     "backend:install": "cd backend && pip install -r requirement.txt",
-    "install": "npm run frontend:install && npm run backend:install",
+    "install-deps": "npm run frontend:install && npm run backend:install",
     "build": "npm run frontend:build",
-    "setup": "npm install concurrently && npm run install"
+    "setup": "npm install concurrently && npm run install-deps"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
