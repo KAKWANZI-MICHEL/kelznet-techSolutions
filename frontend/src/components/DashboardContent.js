@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/DashboardContent.css';
 
 const AdminDashboard = () => {
@@ -14,13 +14,13 @@ const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Simulate receiving a new booking
-  const addNewBooking = (newBooking) => {
-    setBookings([...bookings, newBooking]);
+  const addNewBooking = useCallback((newBooking) => {
+    setBookings(prevBookings => [...prevBookings, newBooking]);
     setStats(prevStats => ({
       ...prevStats,
       bookings: prevStats.bookings + 1
     }));
-  };
+  }, []);
 
   // Simulate WebSocket or API connection for real-time updates
   useEffect(() => {
@@ -41,7 +41,7 @@ const AdminDashboard = () => {
     };
     
     simulateIncomingBooking();
-  }, []);
+  }, [addNewBooking]);
 
   return (
     <div className={`admin-dashboard ${sidebarOpen ? 'sidebar-open' : ''}`}>

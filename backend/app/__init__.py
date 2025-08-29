@@ -35,7 +35,7 @@ def create_app():
     from app.controllers.about_controller import about_bp
     from app.controllers.booking_controller import booking_bp
     from app.controllers.footer_controller import footer_bp
-    from app.controllers.contact_controller import contact_banner_bp
+    from app.controllers.contact_controller import contact_bp as contact_banner_bp
     from app.controllers.admin_login_controller import admin_bp
 
     # Blueprint registration
