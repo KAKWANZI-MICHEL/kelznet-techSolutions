@@ -254,7 +254,7 @@ const DashboardContent = ({ activePage }) => {
           <div className="stat-content">
             <h3>Services</h3>
             <div className="stat-number">{stats.services}</div>
-            <div className="stat-trend positive">5 active</div>
+            <div className="stat-trend positive">{stats.services} active</div>
           </div>
         </div>
         
