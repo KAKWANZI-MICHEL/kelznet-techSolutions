@@ -5,6 +5,13 @@
   box-sizing: border-box;
 }
 
+/* ===== Homepage Container ===== */
+.homepage {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -24,11 +31,14 @@
 }
 
 
-/* Global body styles are defined in App.css - don't override here */
-.homepage {
-  background-color: #000;  /* Dark background for homepage */
-  color: #fff;             /* White text for contrast */
-  min-height: 100vh;       /* Full viewport height */
+body, html {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff;
+  color: #333;
+  scroll-behavior: smooth;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
 /* ===== Hero Section ===== */
@@ -38,13 +48,20 @@
     url('../Image/patrick_about.png');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: #fff;
-  padding: 60px 40px;
+  padding: 0;
+  margin: 0;
   position: relative;
   overflow: hidden;
   z-index: 1;
   font-size: larger;
-  max-height: 900px;
+  min-height: 100vh;  /* Full viewport height */
+  width: 100vw;       /* Full viewport width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Zoom animation for hero */
@@ -72,11 +89,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100vh;
   text-align: center;
-  padding: 100px 20px;
-  background-size: cover;
-  background-position: center;
+  padding: 40px 20px;
+  max-width: 1200px;
+  width: 100%;
+  z-index: 2;
+  position: relative;
 }
 
 .hero-content h1,
@@ -159,7 +177,7 @@ font-size: large;
 /* ===== Services Section ===== */
 .services {
   padding: 80px 40px;
-  background: #1a1a1a;  /* Dark background instead of white */
+  background: #fffefd;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -213,7 +231,7 @@ font-size: large;
 }
 
 .services-text h4 {
-  color: #f7c66b;  /* Golden color for visibility on dark background */
+  color: #3c2210;
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 1px;
@@ -224,12 +242,12 @@ font-size: large;
   font-size: 32px;
   font-weight: 700;
   margin: 10px 0 20px;
-  color: #ffffff;  /* White for main heading */
+  color: #49290b;
 }
 
 .services-text p {
   margin-bottom: 20px;
-  color: #e0e0e0;  /* Light gray for readability */
+  color: #4b5563;
   font-size: 16px;
 }
 
@@ -238,7 +256,7 @@ font-size: large;
   margin-left: 20px;
   margin-bottom: 20px;
   line-height: 1.6;
-  color: #d0d0d0;  /* Light gray for list items */
+  color: #3a2105;
 }
 
 .services-text ul li {
@@ -248,12 +266,12 @@ font-size: large;
 /* ===== Why Choose Us Section ===== */
 .why-choose-us {
   padding: 80px 40px;
-  background: #0a0a0a;  /* Slightly darker than services section for contrast */
+  background: #f0f3f4;
   text-align: center;
 }
 
 .why-choose-us h4 {
-  color: #f7c66b;  /* Golden color for consistency */
+  color: #502a0e;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -264,7 +282,7 @@ font-size: large;
   font-size: 36px;
   font-weight: 700;
   margin: 10px 0 40px;
-  color: #ffffff;  /* White for visibility */
+  color: #351b06;
 }
 
 .choose-cards {
@@ -296,13 +314,13 @@ font-size: large;
 .choose-card h5 {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;  /* Dark color is fine since card background is white */
+  color: #1f2937;
   margin-bottom: 10px;
 }
 
 .choose-card p {
   font-size: 14px;
-  color: #4b5563;  /* Slightly darker for better contrast on white */
+  color: #6b7280;
   line-height: 1.5;
 }
 
@@ -311,11 +329,9 @@ font-size: large;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 .text {
-  /* Removed typing animation - it was causing display issues */
-  overflow: visible;
-  white-space: normal;
-  width: 100%;
-  /* animation: typing 4s steps(40, end) forwards; */
+  flex: 1;
+  max-width: 800px;
+  font-size: larger;
 }
 
 @keyframes typing {
@@ -329,9 +345,15 @@ font-size: large;
 
 /* ===== Responsive Design ===== */
 @media (max-width: 1024px) {
+  .hero {
+    background-attachment: scroll;  /* Better mobile performance */
+    min-height: 100vh;
+  }
+  
   .hero-content {
     flex-direction: column;
     text-align: center;
+    padding: 60px 20px;
   }
   .text {
     margin-bottom: 50px;
@@ -357,6 +379,15 @@ font-size: large;
 }
 
 @media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    background-attachment: scroll;
+  }
+  
+  .hero-content {
+    padding: 40px 15px;
+  }
+  
   .text h1 {
     font-size: 36px;
   }
