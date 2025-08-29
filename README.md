@@ -40,7 +40,7 @@ kelznet-techSolutions/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/KAKWANZI-MICHEL/kelznet-tech.git
+   git clone https://github.com/KAKWANZI-MICHEL/kelznet-techSolutions.git
    cd kelznet-techSolutions
    ```
 
@@ -53,6 +53,11 @@ kelznet-techSolutions/
    ```bash
    npm run dev
    ```
+
+4. **Access the application:**
+   - **Frontend**: http://localhost:3000
+   - **Backend API**: http://127.0.0.1:5000
+   - **Admin Login**: http://localhost:3000/login
 
 ## 📋 Available Scripts
 
@@ -102,13 +107,40 @@ The Flask backend runs on `http://127.0.0.1:8000` and provides:
 - **Service Management**: Dynamic service listing and management
 - **Database Integration**: SQLite database with migrations
 
+## 🔐 Authentication System
+
+The application includes a complete JWT-based authentication system with admin and client roles.
+
+### **Test Accounts**
+
+| Role | Email | Password | Access Level |
+|------|-------|----------|-------------|
+| **👑 Admin** | `admin@kelznet.com` | `admin123` | Full dashboard access |
+| **👤 Client** | `client@kelznet.com` | `client123` | Basic user access |
+
+### **Authentication Endpoints**
+
+- **Login**: `POST http://127.0.0.1:5000/api/v1/auth/login`
+- **Register**: `POST http://127.0.0.1:5000/api/v1/auth/register`
+- **Profile**: `GET http://127.0.0.1:5000/api/v1/auth/profile` (Protected)
+- **Admin Dashboard**: `GET http://127.0.0.1:5000/api/v1/admin/dashboard` (Admin only)
+
+### **Frontend Routes**
+
+- **🏠 Home**: http://localhost:3000
+- **🔐 Login**: http://localhost:3000/login
+- **👑 Admin Dashboard**: http://localhost:3000/dashboard (Protected)
+- **📋 Services**: http://localhost:3000/services
+- **📞 Contact**: http://localhost:3000/contact
+- **ℹ️ About**: http://localhost:3000/about
+
 ## 🔗 API Integration
 
 The frontend connects to the Flask backend API. Key integration points:
 
-- **Base URL**: `http://127.0.0.1:8000`
-- **Authentication**: JWT-based authentication
-- **CORS**: Configured for cross-origin requests
+- **Base URL**: `http://127.0.0.1:5000`
+- **Authentication**: JWT-based authentication with 24-hour token expiry
+- **CORS**: Configured for cross-origin requests between localhost:3000 and 127.0.0.1:5000
 
 ## 📦 Deployment
 
@@ -124,6 +156,34 @@ cd backend
 pip install -r requirement.txt
 python run.py
 ```
+
+## 🛠️ Troubleshooting
+
+### Common Issues
+
+**Port 5000 in use (macOS AirPlay):**
+```bash
+# Kill process using port 5000
+lsof -ti:5000 | xargs kill -9
+
+# Or disable AirPlay Receiver in System Preferences > General > AirDrop & Handoff
+```
+
+**Port 3000 in use:**
+```bash
+# Kill process using port 3000
+lsof -ti:3000 | xargs kill -9
+```
+
+**CORS Errors:**
+- Ensure backend is running on `http://127.0.0.1:5000`
+- Frontend should be on `http://localhost:3000`
+- Check that CORS is properly configured in backend
+
+**Authentication Issues:**
+- Verify test accounts exist by checking backend logs
+- Clear browser localStorage: `localStorage.clear()`
+- Ensure JWT tokens haven't expired
 
 ## 🤝 Contributing
 

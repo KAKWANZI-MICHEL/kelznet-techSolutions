@@ -117,6 +117,60 @@ def cancel_booking(booking_id):
         flash(f"Error cancelling booking: {str(e)}", "danger")
     return redirect(url_for('booking.list_bookings'))
 
+# --- API: Create Booking via JSON ---
+@booking_bp.route('/api/bookings', methods=['POST'])
+def api_create_booking():
+    try:
+        data = request.get_json()
+        
+        # Get data from frontend
+        name = data.get('name')
+        phone = data.get('phone') 
+        email = data.get('email')
+        service_name = data.get('service')
+        message = data.get('message', '')
+        
+        # Find service by name
+        service = Service.query.filter_by(name=service_name).first()
+        if not service:
+            return jsonify({
+                'success': False, 
+                'message': f'Service "{service_name}" not found'
+            }), 400
+            
+        # Work with existing database schema
+        contact_info = f"Phone: {phone} | Email: {email}"
+        if message:
+            contact_info += f" | Message: {message}"
+            
+        booking = Booking(
+            service_id=service.id,
+            guest_name=name,
+            guest_contact=contact_info,  # Store all info in existing contact field
+            preferred_date=datetime.utcnow().date(),  # Default to today since required
+            status="pending",
+            verification_code=generate_verification_code(),
+            is_verified=False
+        )
+        
+        db.session.add(booking)
+        db.session.commit()
+        
+        return jsonify({
+            'success': True,
+            'message': 'Booking created successfully!',
+            'booking_id': booking.booking_id,
+            'verification_code': booking.verification_code,
+            'service': service_name
+        }), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({
+            'success': False,
+            'message': f'Error creating booking: {str(e)}'
+        }), 500
+
 # --- API: List Bookings as JSON ---
 @booking_bp.route('/api/bookings', methods=['GET'])
 def api_list_bookings():
@@ -126,15 +180,15 @@ def api_list_bookings():
         result.append({
             'booking_id': b.booking_id,
             'service_id': b.service_id,
-            'service_name': b.service.service_name,  # assuming Service has `service_name`
+            'service_name': b.service.name if b.service else 'Unknown Service',
             'status': b.status,
             'is_verified': b.is_verified,
             'verification_code': b.verification_code,
             'preferred_date': b.preferred_date.isoformat() if b.preferred_date else None,
             'guest_name': b.guest_name,
-            'guest_contact': b.guest_contact,
+            'guest_contact': b.guest_contact,  # Contains combined phone|email|message info
             'created_at': b.created_at.isoformat(),
-            'updated_at': b.updated_at.isoformat()
+            'updated_at': b.updated_at.isoformat() if b.updated_at else None
         })
     return jsonify(result)
 
