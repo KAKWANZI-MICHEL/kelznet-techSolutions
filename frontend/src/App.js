@@ -1,9 +1,9 @@
 
 
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import axios from "axios";
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import './App.css';
 
 // Components
@@ -21,20 +21,15 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 
-function App() {
-  useEffect(() => {
-    axios.get("http://127.0.0.1:5000/manual")
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.error("Error fetching data:", error);
-      });
-  }, []);
-  return (
-    <Router>
-      <Navbar />
+// Layout component to handle conditional navbar/footer
+const Layout = () => {
+  const location = useLocation();
+  const isDashboard = location.pathname === '/dashboard';
 
+  return (
+    <>
+      {!isDashboard && <Navbar />}
+      
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
@@ -59,7 +54,25 @@ function App() {
         <Route path="*" element={<Login />} />
       </Routes>
 
-      <Footer />
+      {!isDashboard && <Footer />}
+    </>
+  );
+};
+
+function App() {
+  useEffect(() => {
+    axios.get("http://127.0.0.1:5000/manual")
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+  
+  return (
+    <Router>
+      <Layout />
     </Router>
   );
 }
