@@ -11,7 +11,7 @@ import {
   FaLaptopCode,
 } from "react-icons/fa";
 
-const Sidebar = ({ setActivePage, activePage = 'bookings' }) => {
+const Sidebar = ({ setActivePage, activePage = 'overview' }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
@@ -24,6 +24,13 @@ const Sidebar = ({ setActivePage, activePage = 'bookings' }) => {
         <h2>KelzNet Admin</h2>
       </div>
       <nav className="sidebar-nav">
+        <button 
+          className={activePage === 'overview' ? 'active' : ''}
+          onClick={() => setActivePage("overview")}
+        >
+          <FaLaptopCode className="icon" />
+          Overview
+        </button>
         <button 
           className={activePage === 'bookings' ? 'active' : ''}
           onClick={() => setActivePage("bookings")}

@@ -423,11 +423,11 @@ const DashboardContent = ({ activePage }) => {
 
         <main className="dashboard-main">
           {/* Dynamic content based on active page */}
+          {activePage === 'overview' && <DashboardOverview />}
           {activePage === 'bookings' && <BookingsPage />}
           {activePage === 'messages' && <MessagesPage />}
           {activePage === 'users' && <UsersPage />}
           {activePage === 'services' && <ServicesPage />}
-          {(!activePage || activePage === 'dashboard') && <DashboardOverview />}
         </main>
       </div>
     </div>

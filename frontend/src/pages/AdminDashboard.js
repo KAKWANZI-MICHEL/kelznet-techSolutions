@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import DashboardContent from "../components/DashboardContent";
 
 const AdminDashboard = () => {
-  const [activePage, setActivePage] = useState("bookings");
+  const [activePage, setActivePage] = useState("overview");
 
   // Redirect to login if no token
   if (!localStorage.getItem("token")) {
