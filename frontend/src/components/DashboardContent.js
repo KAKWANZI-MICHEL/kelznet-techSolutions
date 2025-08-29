@@ -1,6 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import '../styles/DashboardContent.css';
+import { 
+  FaUsers, 
+  FaCalendarAlt, 
+  FaEnvelope, 
+  FaTools, 
+  FaChartLine, 
+  FaDollarSign, 
+  FaUser,
+  FaCog,
+  FaPlus,
+  FaComments,
+  FaChartBar
+} from 'react-icons/fa';
 
 const DashboardContent = ({ activePage }) => {
   const [bookings, setBookings] = useState([]);
@@ -122,8 +135,8 @@ const DashboardContent = ({ activePage }) => {
     try {
       const response = await axios.get('http://127.0.0.1:5000/api/v1/service_bp/services');
       const servicesData = response.data.services;
-      setStats(prevStats => ({
-        ...prevStats,
+    setStats(prevStats => ({
+      ...prevStats,
         services: servicesData.length
       }));
     } catch (error) {
@@ -187,9 +200,9 @@ const DashboardContent = ({ activePage }) => {
       fetchServices();
       fetchBookings();
       fetchMessages();
-    }, 30000);
-    
-    return () => clearInterval(interval);
+      }, 30000);
+      
+      return () => clearInterval(interval);
   }, [fetchUsers, fetchServices, fetchBookings, fetchMessages, stats.users, stats.bookings, stats.messages]);
 
   // Enhanced Dashboard Overview Component
@@ -204,7 +217,7 @@ const DashboardContent = ({ activePage }) => {
       {/* Enhanced Stats Grid */}
       <div className="enhanced-stats-grid">
         <div className="enhanced-stat-card users">
-          <div className="stat-icon">👥</div>
+          <div className="stat-icon"><FaUsers /></div>
           <div className="stat-content">
             <h3>Total Users</h3>
             <div className="stat-number">{stats.users}</div>
@@ -215,7 +228,7 @@ const DashboardContent = ({ activePage }) => {
         </div>
         
         <div className="enhanced-stat-card bookings">
-          <div className="stat-icon">📅</div>
+          <div className="stat-icon"><FaCalendarAlt /></div>
           <div className="stat-content">
             <h3>Active Bookings</h3>
             <div className="stat-number">{stats.bookings}</div>
@@ -226,7 +239,7 @@ const DashboardContent = ({ activePage }) => {
         </div>
         
         <div className="enhanced-stat-card messages">
-          <div className="stat-icon">✉️</div>
+          <div className="stat-icon"><FaEnvelope /></div>
           <div className="stat-content">
             <h3>New Messages</h3>
             <div className="stat-number">{stats.messages}</div>
@@ -237,7 +250,7 @@ const DashboardContent = ({ activePage }) => {
         </div>
         
         <div className="enhanced-stat-card services">
-          <div className="stat-icon">🛠️</div>
+          <div className="stat-icon"><FaTools /></div>
           <div className="stat-content">
             <h3>Services</h3>
             <div className="stat-number">{stats.services}</div>
@@ -246,7 +259,7 @@ const DashboardContent = ({ activePage }) => {
         </div>
         
         <div className="enhanced-stat-card performance">
-          <div className="stat-icon">📈</div>
+          <div className="stat-icon"><FaChartLine /></div>
           <div className="stat-content">
             <h3>Performance</h3>
             <div className="stat-number">{stats.performance}%</div>
@@ -255,7 +268,7 @@ const DashboardContent = ({ activePage }) => {
         </div>
         
         <div className="enhanced-stat-card revenue">
-          <div className="stat-icon">💰</div>
+          <div className="stat-icon"><FaDollarSign /></div>
           <div className="stat-content">
             <h3>Revenue</h3>
             <div className="stat-number">$2.4K</div>
@@ -274,35 +287,35 @@ const DashboardContent = ({ activePage }) => {
           </div>
           <div className="activity-list">
             <div className="activity-item">
-              <div className="activity-icon new">📅</div>
+              <div className="activity-icon new"><FaCalendarAlt /></div>
               <div className="activity-content">
                 <p><strong>New booking</strong> for Computer Repair</p>
                 <span className="activity-time">5 minutes ago</span>
               </div>
             </div>
             <div className="activity-item">
-              <div className="activity-icon message">✉️</div>
+              <div className="activity-icon message"><FaEnvelope /></div>
               <div className="activity-content">
                 <p><strong>Message received</strong> from John Doe</p>
                 <span className="activity-time">15 minutes ago</span>
               </div>
             </div>
             <div className="activity-item">
-              <div className="activity-icon user">👤</div>
+              <div className="activity-icon user"><FaUser /></div>
               <div className="activity-content">
                 <p><strong>New user registered</strong></p>
                 <span className="activity-time">1 hour ago</span>
               </div>
             </div>
             <div className="activity-item">
-              <div className="activity-icon service">🔧</div>
+              <div className="activity-icon service"><FaCog /></div>
               <div className="activity-content">
                 <p><strong>Service completed</strong> - Network Setup</p>
                 <span className="activity-time">2 hours ago</span>
               </div>
             </div>
           </div>
-        </div>
+            </div>
 
         {/* Quick Actions */}
         <div className="overview-card quick-actions">
@@ -311,23 +324,23 @@ const DashboardContent = ({ activePage }) => {
           </div>
           <div className="actions-grid">
             <button className="action-btn new-booking">
-              <span className="action-icon">➕</span>
+              <span className="action-icon"><FaPlus /></span>
               <span>Add Booking</span>
             </button>
             <button className="action-btn view-messages">
-              <span className="action-icon">💬</span>
+              <span className="action-icon"><FaComments /></span>
               <span>Messages</span>
             </button>
             <button className="action-btn manage-users">
-              <span className="action-icon">👥</span>
+              <span className="action-icon"><FaUsers /></span>
               <span>Users</span>
             </button>
             <button className="action-btn service-analytics">
-              <span className="action-icon">📊</span>
+              <span className="action-icon"><FaChartBar /></span>
               <span>Analytics</span>
             </button>
+            </div>
           </div>
-        </div>
 
         {/* Recent Bookings */}
         <div className="overview-card recent-bookings">
@@ -336,7 +349,7 @@ const DashboardContent = ({ activePage }) => {
             <span className="view-all">View All</span>
           </div>
           <div className="bookings-table">
-            {bookings.length > 0 ? (
+              {bookings.length > 0 ? (
               bookings.slice(0, 4).map(booking => (
                 <div key={booking.id} className="booking-row">
                   <div className="booking-service">{booking.service}</div>
@@ -345,9 +358,9 @@ const DashboardContent = ({ activePage }) => {
                   <div className={`booking-status status-${booking.status}`}>
                     {booking.status}
                   </div>
-                </div>
-              ))
-            ) : (
+                  </div>
+                ))
+              ) : (
               <div className="empty-state">
                 <p>No recent bookings</p>
                 <small>New bookings will appear here</small>

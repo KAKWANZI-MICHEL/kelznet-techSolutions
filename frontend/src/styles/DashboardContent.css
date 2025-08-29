@@ -231,6 +231,12 @@
   font-size: 2.5rem;
   margin-bottom: 1rem;
   display: block;
+  color: #f7c66b;
+}
+
+.enhanced-stat-card .stat-icon svg {
+  width: 40px;
+  height: 40px;
 }
 
 .enhanced-stat-card .stat-content h3 {
@@ -358,6 +364,11 @@
   flex-shrink: 0;
 }
 
+.activity-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
 .activity-content p {
   margin: 0 0 0.25rem 0;
   color: #2d3748;
@@ -399,6 +410,11 @@
 
 .action-icon {
   font-size: 1.5rem;
+}
+
+.action-icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* Recent Bookings Table */
