@@ -13,7 +13,54 @@ const DashboardContent = ({ activePage }) => {
     performance: 75
   });
 
-  // Removed unused sidebar state since we use separate Sidebar component
+  const [trends, setTrends] = useState({
+    users: { percentage: 0, period: 'month', direction: 'neutral' },
+    bookings: { percentage: 0, period: 'week', direction: 'neutral' },
+    messages: { percentage: 0, period: 'week', direction: 'neutral' }
+  });
+
+  const [previousStats, setPreviousStats] = useState({
+    users: 0,
+    bookings: 0,
+    messages: 0
+  });
+
+  // Calculate trends based on current vs previous stats
+  const calculateTrends = useCallback((currentStats, previousStats) => {
+    const newTrends = {};
+    
+    // Calculate users trend (monthly)
+    if (previousStats.users > 0) {
+      const userChange = ((currentStats.users - previousStats.users) / previousStats.users) * 100;
+      newTrends.users = {
+        percentage: Math.abs(Math.round(userChange)),
+        period: 'month',
+        direction: userChange > 0 ? 'positive' : userChange < 0 ? 'negative' : 'neutral'
+      };
+    }
+    
+    // Calculate bookings trend (weekly)
+    if (previousStats.bookings > 0) {
+      const bookingChange = ((currentStats.bookings - previousStats.bookings) / previousStats.bookings) * 100;
+      newTrends.bookings = {
+        percentage: Math.abs(Math.round(bookingChange)),
+        period: 'week',
+        direction: bookingChange > 0 ? 'positive' : bookingChange < 0 ? 'negative' : 'neutral'
+      };
+    }
+    
+    // Calculate messages trend (weekly)
+    if (previousStats.messages > 0) {
+      const messageChange = ((currentStats.messages - previousStats.messages) / previousStats.messages) * 100;
+      newTrends.messages = {
+        percentage: Math.abs(Math.round(messageChange)),
+        period: 'week',
+        direction: messageChange > 0 ? 'positive' : messageChange < 0 ? 'negative' : 'neutral'
+      };
+    }
+    
+    setTrends(newTrends);
+  }, []);
 
   // Fetch real bookings from backend API
   const fetchBookings = useCallback(async () => {
@@ -31,12 +78,64 @@ const DashboardContent = ({ activePage }) => {
         preferredDate: booking.preferred_date
       }));
       setBookings(bookingsData);
-      setStats(prevStats => ({
-        ...prevStats,
-        bookings: bookingsData.length
-      }));
+      setStats(prevStats => {
+        const newStats = {
+          ...prevStats,
+          bookings: bookingsData.length
+        };
+        
+        // Calculate trends after updating stats
+        calculateTrends(newStats, previousStats);
+        
+        return newStats;
+      });
     } catch (error) {
       console.error('Error fetching bookings:', error);
+    }
+  }, []);
+
+  // Fetch users from backend API
+  const fetchUsers = useCallback(async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/api/v1/user_bp/users');
+      const usersData = response.data;
+      setStats(prevStats => {
+        const newStats = {
+          ...prevStats,
+          users: usersData.length
+        };
+        
+        // Calculate trends after updating stats
+        calculateTrends(newStats, previousStats);
+        
+        return newStats;
+      });
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      // Set default users count if API fails
+      setStats(prevStats => ({
+        ...prevStats,
+        users: 0
+      }));
+    }
+  }, [calculateTrends, previousStats]);
+
+  // Fetch services from backend API
+  const fetchServices = useCallback(async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/api/v1/service_bp/services');
+      const servicesData = response.data.services;
+      setStats(prevStats => ({
+        ...prevStats,
+        services: servicesData.length
+      }));
+    } catch (error) {
+      console.error('Error fetching services:', error);
+      // Set default services count if API fails
+      setStats(prevStats => ({
+        ...prevStats,
+        services: 0
+      }));
     }
   }, []);
 
@@ -52,28 +151,53 @@ const DashboardContent = ({ activePage }) => {
         createdAt: msg.created_at
       }));
       setMessages(messagesData);
-      setStats(prevStats => ({
-        ...prevStats,
-        messages: messagesData.length
-      }));
+      setStats(prevStats => {
+        const newStats = {
+          ...prevStats,
+          messages: messagesData.length
+        };
+        
+        // Calculate trends after updating stats
+        calculateTrends(newStats, previousStats);
+        
+        return newStats;
+      });
     } catch (error) {
       console.error('Error fetching messages:', error);
     }
-  }, []);
+  }, [calculateTrends, previousStats]);
 
   // Fetch data on component mount and set up periodic refresh
   useEffect(() => {
+    // Store current stats as previous stats before fetching new data
+    setPreviousStats({
+      users: stats.users,
+      bookings: stats.bookings,
+      messages: stats.messages
+    });
+    
+    fetchUsers();
+    fetchServices();
     fetchBookings();
     fetchMessages();
     
     // Refresh data every 10 seconds
     const interval = setInterval(() => {
+      // Store current stats as previous stats before fetching new data
+      setPreviousStats({
+        users: stats.users,
+        bookings: stats.bookings,
+        messages: stats.messages
+      });
+      
+      fetchUsers();
+      fetchServices();
       fetchBookings();
       fetchMessages();
     }, 10000);
     
     return () => clearInterval(interval);
-  }, [fetchBookings, fetchMessages]);
+  }, [fetchUsers, fetchServices, fetchBookings, fetchMessages, stats.users, stats.bookings, stats.messages]);
 
   // Enhanced Dashboard Overview Component
   const DashboardOverview = () => (
@@ -91,7 +215,9 @@ const DashboardContent = ({ activePage }) => {
           <div className="stat-content">
             <h3>Total Users</h3>
             <div className="stat-number">{stats.users}</div>
-            <div className="stat-trend positive">+12% this month</div>
+            <div className={`stat-trend ${trends.users?.direction || 'neutral'}`}>
+              {trends.users?.percentage > 0 ? `+${trends.users.percentage}%` : '0%'} this {trends.users?.period || 'month'}
+            </div>
           </div>
         </div>
         
@@ -100,7 +226,9 @@ const DashboardContent = ({ activePage }) => {
           <div className="stat-content">
             <h3>Active Bookings</h3>
             <div className="stat-number">{stats.bookings}</div>
-            <div className="stat-trend positive">+8% this week</div>
+            <div className={`stat-trend ${trends.bookings?.direction || 'neutral'}`}>
+              {trends.bookings?.percentage > 0 ? `+${trends.bookings.percentage}%` : '0%'} this {trends.bookings?.period || 'week'}
+            </div>
           </div>
         </div>
         
@@ -109,7 +237,9 @@ const DashboardContent = ({ activePage }) => {
           <div className="stat-content">
             <h3>New Messages</h3>
             <div className="stat-number">{stats.messages}</div>
-            <div className="stat-trend neutral">0 pending</div>
+            <div className={`stat-trend ${trends.messages?.direction || 'neutral'}`}>
+              {trends.messages?.percentage > 0 ? `+${trends.messages.percentage}%` : '0%'} this {trends.messages?.period || 'week'}
+            </div>
           </div>
         </div>
         
