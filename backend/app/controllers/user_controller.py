@@ -1,7 +1,7 @@
 
 
 from flask import Blueprint, request, jsonify   # Import Blueprint (for modular routes), request (for incoming HTTP data), jsonify (to send JSON responses)
-from app.model.user import User   # Import the User model (represents the user table in the DB)
+from app.model.auth import User   # Import the User model (represents the user table in the DB)
 from app.extensions import db   # Import SQLAlchemy database instance for queries and transactions
 import re   # Import regex module for email validation
 

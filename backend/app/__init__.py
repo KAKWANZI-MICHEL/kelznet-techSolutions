@@ -1,6 +1,6 @@
 from flask import Flask, request, Response
 from config import Config
-from app.extensions import db, jwt
+from app.extensions import db, jwt, cors
 from flask_migrate import Migrate
 import json
 
@@ -12,11 +12,23 @@ def create_app():
     # Initialize extensions
     db.init_app(app)
     jwt.init_app(app)
+    cors.init_app(app, resources={
+        r"/api/*": {
+            "origins": ["http://localhost:3000", "http://127.0.0.1:3000"],
+            "allow_headers": ["Content-Type", "Authorization"],
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+        },
+        r"/manual": {
+            "origins": ["http://localhost:3000", "http://127.0.0.1:3000"],
+            "allow_headers": ["Content-Type", "Authorization"], 
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+        }
+    })
     Migrate(app, db)
 
     # Import models so Flask-Migrate can detect them
     from app.model.serviceRequest import ServiceRequest
-    from app.model.user import User
+    from app.model.auth import User
     from app.model.contactMessage import ContactMessage
     from app.model.service import Service
     from app.model.admin_login import AdminLogin

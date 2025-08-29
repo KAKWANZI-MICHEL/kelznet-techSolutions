@@ -1,11 +1,11 @@
 import axios from "axios";
 
 // Base URLs
-const AUTH_URL = "http://localhost:5000/api/v1/auth";
-const MESSAGES_URL = "http://localhost:5000/api/v1/messages";
-const REQUESTS_URL = "http://localhost:5000/api/v1/requests";
-const SERVICES_URL = "http://localhost:5000/api/v1/services";
-const USERS_URL = "http://localhost:5000/api/v1/users";
+const AUTH_URL = "http://127.0.0.1:5000/api/v1/auth";
+const MESSAGES_URL = "http://127.0.0.1:5000/api/v1/messages";
+const REQUESTS_URL = "http://127.0.0.1:5000/api/v1/requests";
+const SERVICES_URL = "http://127.0.0.1:5000/api/v1/services";
+const USERS_URL = "http://127.0.0.1:5000/api/v1/users";
 
 // ---------- AUTH ----------
 
