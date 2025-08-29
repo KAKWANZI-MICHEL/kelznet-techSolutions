@@ -312,6 +312,8 @@
   position: relative;
 }
 
+/* Removed hover effects */
+
 .full-width {
   grid-column: 1 / -1;
 }
@@ -322,7 +324,7 @@
   padding: 1rem 1.5rem;
   border: 2px solid rgba(247, 198, 107, 0.2);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.95);
   font-size: 1rem;
   font-family: inherit;
   transition: all 0.3s ease;
@@ -345,7 +347,7 @@
 
 .input-group input::placeholder,
 .input-group textarea::placeholder {
-  color: #9ca3af;
+  color: #6b7280;
   font-weight: 400;
 }
 
