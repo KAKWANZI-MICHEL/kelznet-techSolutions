@@ -637,71 +637,205 @@ body, html {
   box-shadow: 0 4px 12px rgba(247, 198, 107, 0.5);
 }
 
-/* ===== Why Choose Us Section ===== */
+/* ===== Modern Why Choose Us Section ===== */
 .why-choose-us {
-  padding: 80px 40px;
-  background: #f0f3f4;
+  padding: 120px 0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.why-choose-us::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 30% 20%, rgba(247, 198, 107, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(247, 198, 107, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.why-choose-us-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .why-choose-us h4 {
-  color: #502a0e;
-  font-weight: 600;
+  color: #f7c66b;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 14px;
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.why-choose-us h4::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, #f7c66b, #ca9c79);
+  border-radius: 1px;
 }
 
 .why-choose-us h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin: 10px 0 40px;
-  color: #351b06;
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 4rem 0;
+  color: #ffffff;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .choose-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 35px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
   justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .choose-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .choose-card {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .choose-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .choose-card {
-  background: #fff;
-  padding: 25px;
-  border-left: 5px solid #3f200a;
-  border-radius: 12px;
-  text-align: left;
-  max-width: 300px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(247, 198, 107, 0.2);
+  padding: 2.5rem;
+  border-radius: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    0 4px 16px rgba(247, 198, 107, 0.1);
+  cursor: pointer;
+}
+
+.choose-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f7c66b, #ca9c79, #f7c66b);
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+.choose-card:hover::before {
+  transform: scaleX(1);
+}
+
+.choose-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(247, 198, 107, 0.1) 0%, transparent 70%);
+  transition: all 0.6s ease;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.choose-card:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+.choose-card-image-wrapper {
+  position: relative;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
 .choose-card img {
-  width: 250px;
-  height: 250px;
-  object-fit: contain;
-  margin-bottom: 10px;
-  border-radius: 40px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.choose-card:hover img {
+  transform: scale(1.05);
+  filter: brightness(1) contrast(1.2);
 }
 
 .choose-card h5 {
-  font-size: 18px;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #1f2937;
-  margin-bottom: 10px;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .choose-card p {
-  font-size: 14px;
-  color: #6b7280;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #cbd5e0;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
 }
 
 .choose-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    0 10px 30px rgba(247, 198, 107, 0.2);
+  border-color: rgba(247, 198, 107, 0.4);
 }
+
+.choose-card:hover h5 {
+  color: #f7c66b;
+  transform: translateY(-2px);
+}
+
+.choose-card:hover p {
+  color: #e2e8f0;
+}
+
+/* ===== Text Styles ===== */
 .text {
   flex: 1;
   max-width: 800px;
@@ -747,9 +881,12 @@ body, html {
   .service-cards {
     grid-template-columns: 1fr;
   }
+  .why-choose-us-container {
+    padding: 0 1rem;
+  }
   .choose-cards {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   .choose-card {
     max-width: 100%;
@@ -780,6 +917,20 @@ body, html {
     margin: 0 auto 10px;
     display: block;
   }
+  
+  .why-choose-us {
+    padding: 80px 0;
+  }
+  
+  .why-choose-us h2 {
+    font-size: 2.2rem;
+  }
+  
+  .choose-cards {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
   /* Navbar responsive styles are handled in Navbar.css */
 }
 
@@ -804,9 +955,26 @@ body, html {
     font-size: 0.8rem;
   }
   .why-choose-us {
-    padding: 60px 20px;
+    padding: 80px 0;
+  }
+  .why-choose-us-container {
+    padding: 0 1rem;
   }
   .why-choose-us h2 {
-    font-size: 28px;
+    font-size: 2rem;
+  }
+  .why-choose-us h4 {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+  }
+  .choose-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .choose-card {
+    padding: 2rem 1.5rem;
+  }
+  .choose-card img {
+    height: 180px;
   }
 }

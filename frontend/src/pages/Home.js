@@ -89,22 +89,30 @@ function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Modern Why Choose Us Section */}
       <section className="why-choose-us">
-        <h4 className="fade-in-up">What We Offer</h4>
-        <h2 className="fade-in-up">Why You Should Choose Us</h2>
-        <div className="choose-cards">
-          <div className="choose-card fade-in-up">
-            <img src={soft_inst} alt="1" />
-            <h5>Perfect solutions that your business demands</h5>
-          </div>
-          <div className="choose-card fade-in-up">
-            <img src={network_set} alt="2" />
-            <h5>We Provide Powerful Product Strategy</h5>
-          </div>
-          <div className="choose-card fade-in-up">
-            <img src={training_ict} alt="3" />
-            <h5>Help your business grow worldwide</h5>
+        <div className="why-choose-us-container">
+          <h4 className="fade-in-up">What We Offer</h4>
+          <h2 className="fade-in-up">Why You Should Choose Us</h2>
+          <div className="choose-cards">
+            <div className="choose-card fade-in-up">
+              <div className="choose-card-image-wrapper">
+                <img src={soft_inst} alt="Perfect solutions that your business demands" />
+              </div>
+              <h5>Perfect solutions that your business demands</h5>
+            </div>
+            <div className="choose-card fade-in-up">
+              <div className="choose-card-image-wrapper">
+                <img src={network_set} alt="We Provide Powerful Product Strategy" />
+              </div>
+              <h5>We Provide Powerful Product Strategy</h5>
+            </div>
+            <div className="choose-card fade-in-up">
+              <div className="choose-card-image-wrapper">
+                <img src={training_ict} alt="Help your business grow worldwide" />
+              </div>
+              <h5>Help your business grow worldwide</h5>
+            </div>
           </div>
         </div>
       </section>
