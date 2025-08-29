@@ -1,3 +1,70 @@
+/* Admin Dashboard Layout */
+.admin-dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-content {
+  flex: 1;
+  margin-left: 240px; /* Match sidebar width */
+  padding: 2rem;
+  background-color: #f8f9fa;
+}
+
+.content-area {
+  width: 100%;
+}
+
+.dashboard-header {
+  background: white;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  color: #1e1200;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.dashboard-main {
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.page-content {
+  padding: 1rem 0;
+}
+
+.page-content h2 {
+  color: #1e1200;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f7c66b;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dashboard-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+  
+  .sidebar {
+    transform: translateX(-100%);
+    z-index: 1000;
+  }
+  
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+}
+
 /* Sidebar.css */
 .sidebar {
   background-color: #1e1200;
@@ -56,6 +123,16 @@
 .sidebar-nav button:hover,
 .sidebar-footer button:hover {
   background-color: #2f1b06;
+}
+
+.sidebar-nav button.active {
+  background-color: #f7c66b;
+  color: #1e1200;
+  font-weight: 600;
+}
+
+.sidebar-nav button.active .icon {
+  color: #1e1200;
 }
 
 .sidebar-footer {

@@ -1,100 +1,134 @@
-/* === Footer Container === */
-.footer-container {
-  background-color: #271602; /* Dark brown */
-  color: #ecf0f1; /* Light text */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding-top: 2rem;
+/* Modern Compact Footer */
+.modern-footer {
+  background: linear-gradient(135deg, #271602 0%, #1e1200 100%);
+  color: #ecf0f1;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  border-top: 1px solid #3a2a0f;
+  margin-top: auto;
 }
 
-/* === Footer Main Content === */
-.footer-content {
+/* Main footer content */
+.footer-main {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 2rem;
+  align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 2rem 1.5rem;
+  gap: 2rem;
 }
 
-/* === Footer Sections === */
-.footer-section {
-  flex: 1 1 250px;
-  min-width: 250px;
+/* Brand section */
+.footer-brand h4 {
+  color: #f7c66b;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: -0.025em;
 }
 
-.footer-section h3 {
-  color: #f4e1c1; /* Cream heading */
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #f4e1c1;
-}
-
-.footer-section.about-us .tagline {
-  font-style: italic;
-  color: #bdc3c7;
-  
-}
-
-/* === Footer Lists === */
-.footer-section ul {
-  list-style: none;
-  padding: 0;
+.footer-brand p {
+  color: #d4c5a9;
+  font-size: 0.875rem;
   margin: 0;
+  font-weight: 400;
 }
 
-.footer-section li {
-  margin-bottom: 0.8rem;
+/* Links section */
+.footer-links {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  gap: 3rem;
+  align-items: flex-start;
 }
 
-/* === Icons === */
-.footer-section i {
-  color: #f4e1c1;
-  min-width: 20px;
-  text-align: center;
+.link-group > span {
+  color: #f7c66b;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.75rem;
 }
 
-/* === Links === */
-.footer-section a {
+/* Service tags */
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.service-tags .tag {
+  background: rgba(247, 198, 107, 0.15);
+  color: #f7c66b;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid rgba(247, 198, 107, 0.3);
+}
+
+/* Contact info */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-info a {
   color: #ecf0f1;
   text-decoration: none;
-  transition: color 0.3s ease;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.footer-section a:hover {
-  color: #f4e1c1;
+.contact-info a:hover {
+  color: #f7c66b;
 }
 
-/* === Footer Bottom === */
+.contact-info span {
+  color: #d4c5a9;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Bottom bar */
 .footer-bottom {
-  background-color: #1a0800; /* Slightly darker brown */
+  background: rgba(26, 8, 0, 0.8);
+  border-top: 1px solid #3a2a0f;
   text-align: center;
   padding: 1rem;
-  margin-top: 2rem;
 }
 
-.footer-bottom p {
-  margin: 0;
-  font-size: 0.9rem;
+.footer-bottom span {
   color: #bdc3c7;
+  font-size: 0.75rem;
+  margin: 0;
 }
 
-.footer-section.services{
-  background-color: #271602;
-}
-
-/* === Responsive Design === */
+/* Responsive design */
 @media (max-width: 768px) {
-  .footer-content {
+  .footer-main {
     flex-direction: column;
     text-align: center;
+    padding: 1.5rem 1rem;
+    gap: 1.5rem;
   }
-
-  .footer-section li {
+  
+  .footer-links {
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  
+  .service-tags {
     justify-content: center;
+  }
+  
+  .contact-info {
+    align-items: center;
   }
 }

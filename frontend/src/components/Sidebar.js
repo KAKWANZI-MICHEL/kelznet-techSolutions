@@ -11,7 +11,7 @@ import {
   FaLaptopCode,
 } from "react-icons/fa";
 
-const Sidebar = ({ setActivePage }) => {
+const Sidebar = ({ setActivePage, activePage = 'bookings' }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
@@ -24,19 +24,31 @@ const Sidebar = ({ setActivePage }) => {
         <h2>KelzNet Admin</h2>
       </div>
       <nav className="sidebar-nav">
-        <button onClick={() => setActivePage("bookings")}>
+        <button 
+          className={activePage === 'bookings' ? 'active' : ''}
+          onClick={() => setActivePage("bookings")}
+        >
           <FaBook className="icon" />
           Bookings
         </button>
-        <button onClick={() => setActivePage("messages")}>
+        <button 
+          className={activePage === 'messages' ? 'active' : ''}
+          onClick={() => setActivePage("messages")}
+        >
           <FaEnvelope className="icon" />
           Messages
         </button>
-        <button onClick={() => setActivePage("users")}>
+        <button 
+          className={activePage === 'users' ? 'active' : ''}
+          onClick={() => setActivePage("users")}
+        >
           <FaUsers className="icon" />
           Users
         </button>
-        <button onClick={() => setActivePage("services")}>
+        <button 
+          className={activePage === 'services' ? 'active' : ''}
+          onClick={() => setActivePage("services")}
+        >
           <FaTools className="icon" />
           Services
         </button>

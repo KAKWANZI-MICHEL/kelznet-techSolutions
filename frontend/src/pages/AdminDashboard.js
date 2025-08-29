@@ -11,8 +11,8 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="dashboard">
-      <Sidebar setActivePage={setActivePage} />
+    <div className="admin-dashboard-layout">
+      <Sidebar setActivePage={setActivePage} activePage={activePage} />
       <DashboardContent activePage={activePage} />
     </div>
   );

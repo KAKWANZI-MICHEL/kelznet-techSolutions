@@ -1,42 +1,64 @@
 /* === Navbar container === */
 .navbar {
-  background-color: #271602;      /* Sets a dark brown background color for the navbar */
-  display: flex;                  /* Use Flexbox to layout children (logo and nav links) */
-  justify-content: space-between;/* Places logo on the left and links on the right */
-  align-items: center;           /* Vertically centers the items in the navbar */
-  padding: 0 20px;               /* Horizontal padding on left and right */
-  margin: 0;                     /* Removes default outer margin */
-  height: 70px;                  /* Fixes the navbar height */
-  position: relative;            /* Allows absolute positioning of dropdown in responsive mode */
-  z-index: 10;                   /* Ensures navbar appears above other elements */
+  background-color: #271602;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  margin: 0;
+  height: 70px;
+  position: relative;
+  z-index: 10;
+  width: 100%;
 }
 
 /* === Logo section === */
 .logo {
-  display: flex;                 /* Aligns logo image and text horizontally */
-  align-items: center;          /* Vertically centers the logo content */
-  font-size: 1.2rem;            /* Sets font size for logo text if used */
-  color: #fff;                  /* White text color */
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
-/* Optional logo icon (not used but structured) */
+/* Logo text - hidden by default, shows on hover */
+.logo-text {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+  margin-left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Show logo text on hover */
+.logo:hover .logo-text {
+  opacity: 1;
+  transform: translateX(0);
+  margin-left: 0.5rem;
+}
+
+/* Logo icon */
 .logo-icon {
-  font-size: 0rem;              /* Hides text-based icon if used */
-  margin-right: 0.5rem;         /* Spacing between icon and logo image */
+  font-size: 0rem;
+  margin-right: 0.5rem;
 }
 
 /* Logo image */
 .logo-image {
-  width: 50px;                  /* Width of the logo image */
+  width: 50px;
 }
 
 /* === Navigation Links Container === */
 .nav-links {
-  display: flex;                /* Layout nav links in a row */
-  list-style: none;            /* Removes bullet points from list items */
-  gap: 1.5rem;                  /* Spacing between each nav item */
-  justify-content: center;     /* Centers nav items horizontally */
-  align-items: center;         /* Vertically aligns nav items */
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  margin-left: 3rem;  /* Only this spacing from logo */
 }
 
 /* === Styling for each link inside nav bar === */
@@ -72,26 +94,27 @@
 /* === Responsive styling for mobile/tablets (max width: 768px) === */
 @media (max-width: 768px) {
   
-  /* Mobile nav links (dropdown style) */
+  /* Reset nav-links for mobile */
   .nav-links {
-    position: absolute;        /* Allows the nav to float below the navbar */
-    top: 70px;                 /* Positions it directly below navbar */
-    right: 0;                  /* Aligns it to the right */
-    width: 100%;               /* Full width on small screens */
-    background-color: #271602;/* Matches navbar color */
-    flex-direction: raw;    /* Stack links vertically */
-    gap: 20px;                 /* Adds vertical spacing between links */
-    padding: 30px 0;           /* Padding above and below the link list */
-    display: none;             /* Hidden by default until toggled */
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background-color: #271602;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 0;
+    display: none;
+    margin-left: 0;  /* Reset margin for mobile */
   }
 
   /* When nav is active (JS adds `.active`), show the links */
   .nav-links.active {
-    display: flex;             /* Makes nav links visible as a vertical dropdown */
+    display: flex;
   }
 
   /* Show hamburger on mobile */
   .hamburger {
-    display: flex;             /* Show hamburger icon in mobile view */
+    display: flex;
   }
 }

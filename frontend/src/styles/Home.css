@@ -55,38 +55,8 @@ body, html {
   50% { transform: scale(1.05); }
 }
 
-/* ===== Navbar ===== */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  flex-wrap: wrap;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #fff;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.nav-links li {
-  cursor: pointer;
-  color: #fff;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.nav-links li:hover {
-  color: #fb923c;
-}
+/* ===== Navbar styles removed - using Navbar.css instead ===== */
+/* Navbar styles are defined in ../components/Navbar.js and ../styles/Navbar.css */
 
 .call-info {
   text-align: right;

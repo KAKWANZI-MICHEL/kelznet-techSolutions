@@ -3,38 +3,37 @@ import '../styles/Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer-container">
-      <div className="footer-content">
-        <div className="footer-section about-us">
-          <h3>KelzNet Tech Solutions</h3>
-          <p className="tagline">Professional IT Solution for Your Business</p>
+    <footer className="modern-footer">
+      <div className="footer-main">
+        <div className="footer-brand">
+          <h4>KelzNet Tech Solutions</h4>
+          <p>Professional IT Solutions</p>
         </div>
-
-        <div className="footer-section services">
-          <h3>Our Services</h3>
-          <ul>
-            <li><i className="fas fa-laptop"></i> Computer Repairs</li>
-            <li><i className="fas fa-network-wired"></i> Network Setup</li>
-            <li><i className="fas fa-download"></i> Software Installation</li>
-            <li><i className="fas fa-chalkboard-teacher"></i> ICT Training</li>
-          </ul>
-        </div>
-
-        <div className="footer-section contact-us">
-          <h3>Contact Us</h3>
-          <ul>
-            <li><i className="fas fa-phone-alt"></i> +256 771 026689</li>
-            <li>
-              <i className="fas fa-envelope"></i>{' '}
-              <a href="mailto:zzlwa4728@gmail.com">zzlwa4728@gmail.com</a>
-            </li>
-            <li><i className="fas fa-map-marker-alt"></i> kampala uganda</li>
-          </ul>
+        
+        <div className="footer-links">
+          <div className="link-group">
+            <span>Services</span>
+            <div className="service-tags">
+              <span className="tag">Computer Repair</span>
+              <span className="tag">Network Setup</span>
+              <span className="tag">Software Installation</span>
+              <span className="tag">ICT Training</span>
+            </div>
+          </div>
+          
+          <div className="link-group">
+            <span>Contact</span>
+            <div className="contact-info">
+              <a href="tel:+256771026689">📞 +256 771 026689</a>
+              <a href="mailto:zzlwa4728@gmail.com">✉️ zzlwa4728@gmail.com</a>
+              <span>📍 Kampala, Uganda</span>
+            </div>
+          </div>
         </div>
       </div>
-
+      
       <div className="footer-bottom">
-        <p>&copy; 2024 KelzNet Tech Solutions. All rights reserved.</p>
+        <span>&copy; 2025 KelzNet Tech Solutions. All rights reserved.</span>
       </div>
     </footer>
   );

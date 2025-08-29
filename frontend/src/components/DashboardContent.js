@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/DashboardContent.css';
 
-const AdminDashboard = () => {
+const DashboardContent = ({ activePage }) => {
   const [bookings, setBookings] = useState([]);
   const [stats, setStats] = useState({
     users: 120,
@@ -10,8 +10,7 @@ const AdminDashboard = () => {
     performance: 75
   });
 
-  // UI state for responsive sidebar
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  // Removed unused sidebar state since we use separate Sidebar component
 
   // Simulate receiving a new booking
   const addNewBooking = useCallback((newBooking) => {
@@ -43,99 +42,108 @@ const AdminDashboard = () => {
     simulateIncomingBooking();
   }, [addNewBooking]);
 
-  return (
-    <div className={`admin-dashboard ${sidebarOpen ? 'sidebar-open' : ''}`}>
-      {/* Sidebar */}
-      <aside className="dashboard-sidebar" aria-label="Main navigation">
-        <div className="sidebar-header">
-          <span className="brand-icon" aria-hidden="true" />
-          <span className="brand-name">Admin Panel</span>
-          <button
-            className="sidebar-toggle"
-            aria-label="Toggle sidebar"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          >
-            ☰
-          </button>
+  // Individual page components
+  const DashboardOverview = () => (
+    <div>
+      <div className="stats-grid">
+        <div className="stat-card">
+          <h3>USERS</h3>
+          <div className="stat-number">{stats.users}</div>
         </div>
-        <nav className="sidebar-nav">
-          <ul>
-            <li className="active">Dashboard</li>
-            <li>Users</li>
-            <li>Bookings</li>
-            <li>Services</li>
-            <li>Performance</li>
-            <li>Settings</li>
-          </ul>
-        </nav>
-        <div className="sidebar-footer">
-          <button className="logout-btn">Logout</button>
+        <div className="stat-card">
+          <h3>BOOKINGS</h3>
+          <div className="stat-number">{stats.bookings}</div>
         </div>
-      </aside>
+        <div className="stat-card">
+          <h3>SERVICES</h3>
+          <div className="stat-number">{stats.services}</div>
+        </div>
+        <div className="stat-card">
+          <h3>PERFORMANCE</h3>
+          <div className="stat-number">{stats.performance}%</div>
+        </div>
+      </div>
+      <div className="bookings-section">
+        <h2>Recent Bookings</h2>
+        <div className="bookings-list">
+          {bookings.length > 0 ? (
+            bookings.map(booking => (
+              <div key={booking.id} className="booking-item">
+                <span className="service">{booking.service}</span>
+                <span className="client">{booking.client}</span>
+                <span className="time">{booking.time}</span>
+              </div>
+            ))
+          ) : (
+            <p>No bookings yet. New bookings will appear here.</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 
-      {/* Main content area with a responsive header and content */}
+  const BookingsPage = () => (
+    <div className="page-content">
+      <h2>Manage Bookings</h2>
+      <div className="bookings-grid">
+        {bookings.map(booking => (
+          <div key={booking.id} className="booking-card">
+            <h4>{booking.service}</h4>
+            <p><strong>Client:</strong> {booking.client}</p>
+            <p><strong>Time:</strong> {booking.time}</p>
+            <div className="booking-actions">
+              <button className="btn-approve">Approve</button>
+              <button className="btn-cancel">Cancel</button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const MessagesPage = () => (
+    <div className="page-content">
+      <h2>Contact Messages</h2>
+      <p>Customer messages and inquiries will be displayed here.</p>
+    </div>
+  );
+
+  const UsersPage = () => (
+    <div className="page-content">
+      <h2>User Management</h2>
+      <p>Registered users and their information will be shown here.</p>
+    </div>
+  );
+
+  const ServicesPage = () => (
+    <div className="page-content">
+      <h2>Service Management</h2>
+      <p>Manage available services, pricing, and descriptions.</p>
+    </div>
+  );
+
+  // Page switching is now handled directly in JSX below
+
+  return (
+    <div className="dashboard-content">{/* Remove embedded sidebar - use separate Sidebar component */}
+
+      {/* Main content area with dynamic page switching */}
       <div className="content-area">
         <header className="dashboard-header">
-          {/* <div className="brand">
-            <span className="brand-icon" />
-            <span className="brand-name">Admin Dashboard</span>
-          </div> */}
-          {/* <button className="logout-btn">Logout</button> */}
+          <h1>Admin Dashboard - {activePage?.charAt(0).toUpperCase() + activePage?.slice(1) || 'Overview'}</h1>
         </header>
 
-        <nav className="dashboard-nav" aria-label="Top sections">
-          {/* <ul>
-            <li className="active">Dashboard</li>
-            <li>Users</li>
-            <li>Bookings</li>
-            <li>Services</li>
-            <li>Performance</li>
-          </ul> */}
-        </nav>
-
         <main className="dashboard-main">
-          <div className="stats-grid">
-            <div className="stat-card">
-              <h3>USERS</h3>
-              <div className="stat-number">{stats.users}</div>
-            </div>
-
-            <div className="stat-card">
-              <h3>BOOKINGS</h3>
-              <div className="stat-number">{stats.bookings}</div>
-            </div>
-
-            <div className="stat-card">
-              <h3>SERVICES</h3>
-              <div className="stat-number">{stats.services}</div>
-            </div>
-
-            <div className="stat-card">
-              <h3>PERFORMANCE</h3>
-              <div className="stat-number">{stats.performance}%</div>
-            </div>
-          </div>
-
-          <div className="bookings-section">
-            <h2>Recent Bookings</h2>
-            <div className="bookings-list">
-              {bookings.length > 0 ? (
-                bookings.map(booking => (
-                  <div key={booking.id} className="booking-item">
-                    <span className="service">{booking.service}</span>
-                    <span className="client">{booking.client}</span>
-                    <span className="time">{booking.time}</span>
-                  </div>
-                ))
-              ) : (
-                <p>No bookings yet. New bookings will appear here.</p>
-              )}
-            </div>
-          </div>
+          {/* Dynamic content based on active page */}
+          {activePage === 'bookings' && <BookingsPage />}
+          {activePage === 'messages' && <MessagesPage />}
+          {activePage === 'users' && <UsersPage />}
+          {activePage === 'services' && <ServicesPage />}
+          {(!activePage || activePage === 'dashboard') && <DashboardOverview />}
         </main>
       </div>
     </div>
   );
 };
 
-export default AdminDashboard;
+export default DashboardContent;
