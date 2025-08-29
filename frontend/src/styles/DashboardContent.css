@@ -174,6 +174,485 @@
   .stats-grid { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
 }
 
+/* ===== Enhanced Dashboard Overview Styles ===== */
+
+/* Welcome Section */
+.welcome-section {
+  margin-bottom: 2rem;
+}
+
+.welcome-section h2 {
+  color: #271602;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+/* Enhanced Stats Grid */
+.enhanced-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.enhanced-stat-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fefcfb 100%);
+  border: 1px solid rgba(247, 198, 107, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.enhanced-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f7c66b, #ca9c79);
+}
+
+.enhanced-stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(247, 198, 107, 0.2);
+}
+
+.enhanced-stat-card .stat-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.enhanced-stat-card .stat-content h3 {
+  color: #4a5568;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.enhanced-stat-card .stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #271602;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-trend {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.stat-trend.positive {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+}
+
+.stat-trend.neutral {
+  background: rgba(107, 114, 128, 0.1);
+  color: #4b5563;
+}
+
+.stat-trend.negative {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+/* Overview Cards */
+.overview-card {
+  background: #ffffff;
+  border: 1px solid rgba(247, 198, 107, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.overview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(247, 198, 107, 0.15);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(247, 198, 107, 0.2);
+}
+
+.card-header h3 {
+  color: #271602;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.view-all {
+  color: #f7c66b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.view-all:hover {
+  color: #ca9c79;
+}
+
+/* Recent Activity */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #fafbfc;
+  transition: all 0.2s ease;
+}
+
+.activity-item:hover {
+  background: rgba(247, 198, 107, 0.1);
+  transform: translateX(5px);
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #f7c66b, #ca9c79);
+  color: white;
+  flex-shrink: 0;
+}
+
+.activity-content p {
+  margin: 0 0 0.25rem 0;
+  color: #2d3748;
+  font-size: 0.95rem;
+}
+
+.activity-time {
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+/* Quick Actions */
+.actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.action-btn {
+  background: linear-gradient(135deg, #f7c66b, #ca9c79);
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #271602;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 80px;
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(247, 198, 107, 0.3);
+}
+
+.action-icon {
+  font-size: 1.5rem;
+}
+
+/* Recent Bookings Table */
+.bookings-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.booking-row {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fafbfc;
+  border-radius: 8px;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.booking-row:hover {
+  background: rgba(247, 198, 107, 0.1);
+}
+
+.booking-service {
+  font-weight: 600;
+  color: #271602;
+}
+
+.booking-client {
+  color: #4a5568;
+}
+
+.booking-time {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.booking-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.status-pending {
+  background: rgba(251, 191, 36, 0.2);
+  color: #d97706;
+}
+
+.status-confirmed {
+  background: rgba(34, 197, 94, 0.2);
+  color: #16a34a;
+}
+
+.status-cancelled {
+  background: rgba(239, 68, 68, 0.2);
+  color: #dc2626;
+}
+
+/* Service Analytics Charts */
+.service-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.service-stat {
+  display: grid;
+  grid-template-columns: 2fr 3fr auto;
+  gap: 1rem;
+  align-items: center;
+}
+
+.service-name {
+  font-weight: 600;
+  color: #271602;
+  font-size: 0.9rem;
+}
+
+.service-bar {
+  background: #e5e7eb;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.service-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #f7c66b, #ca9c79);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.service-percentage {
+  color: #6b7280;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* System Health */
+.health-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.health-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #fafbfc;
+  border-radius: 8px;
+}
+
+.health-label {
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.health-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.health-status.online {
+  background: rgba(34, 197, 94, 0.2);
+  color: #16a34a;
+}
+
+.health-status.good {
+  background: rgba(59, 130, 246, 0.2);
+  color: #2563eb;
+}
+
+.health-status.warning {
+  background: rgba(251, 191, 36, 0.2);
+  color: #d97706;
+}
+
+.health-status.error {
+  background: rgba(239, 68, 68, 0.2);
+  color: #dc2626;
+}
+
+/* Recent Messages */
+.messages-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fafbfc;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.message-item:hover {
+  background: rgba(247, 198, 107, 0.1);
+}
+
+.message-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f7c66b, #ca9c79);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.message-content {
+  flex: 1;
+}
+
+.message-content strong {
+  color: #271602;
+  font-size: 0.95rem;
+}
+
+.message-content p {
+  color: #4a5568;
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.message-content small {
+  color: #6b7280;
+  font-size: 0.8rem;
+}
+
+/* Empty States */
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+.empty-state p {
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.empty-state small {
+  font-size: 0.85rem;
+}
+
+/* Responsive Dashboard Grid */
+@media (max-width: 1400px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .enhanced-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .booking-row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .enhanced-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Bookings Grid */
 .bookings-grid {
   display: grid;

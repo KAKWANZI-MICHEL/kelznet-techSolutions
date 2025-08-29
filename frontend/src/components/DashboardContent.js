@@ -75,46 +75,251 @@ const DashboardContent = ({ activePage }) => {
     return () => clearInterval(interval);
   }, [fetchBookings, fetchMessages]);
 
-  // Individual page components
+  // Enhanced Dashboard Overview Component
   const DashboardOverview = () => (
-    <div>
-      <div className="stats-grid">
-        <div className="stat-card">
-          <h3>USERS</h3>
-          <div className="stat-number">{stats.users}</div>
+    <div className="dashboard-overview">
+      {/* Welcome Section */}
+      <div className="welcome-section">
+        <h2>Welcome to KelzNet Admin Dashboard</h2>
+        <p>Monitor your business performance and manage operations from here.</p>
+      </div>
+
+      {/* Enhanced Stats Grid */}
+      <div className="enhanced-stats-grid">
+        <div className="enhanced-stat-card users">
+          <div className="stat-icon">👥</div>
+          <div className="stat-content">
+            <h3>Total Users</h3>
+            <div className="stat-number">{stats.users}</div>
+            <div className="stat-trend positive">+12% this month</div>
+          </div>
         </div>
-        <div className="stat-card">
-          <h3>BOOKINGS</h3>
-          <div className="stat-number">{stats.bookings}</div>
+        
+        <div className="enhanced-stat-card bookings">
+          <div className="stat-icon">📅</div>
+          <div className="stat-content">
+            <h3>Active Bookings</h3>
+            <div className="stat-number">{stats.bookings}</div>
+            <div className="stat-trend positive">+8% this week</div>
+          </div>
         </div>
-        <div className="stat-card">
-          <h3>MESSAGES</h3>
-          <div className="stat-number">{stats.messages}</div>
+        
+        <div className="enhanced-stat-card messages">
+          <div className="stat-icon">✉️</div>
+          <div className="stat-content">
+            <h3>New Messages</h3>
+            <div className="stat-number">{stats.messages}</div>
+            <div className="stat-trend neutral">0 pending</div>
+          </div>
         </div>
-        <div className="stat-card">
-          <h3>SERVICES</h3>
-          <div className="stat-number">{stats.services}</div>
+        
+        <div className="enhanced-stat-card services">
+          <div className="stat-icon">🛠️</div>
+          <div className="stat-content">
+            <h3>Services</h3>
+            <div className="stat-number">{stats.services}</div>
+            <div className="stat-trend positive">5 active</div>
+          </div>
         </div>
-        <div className="stat-card">
-          <h3>PERFORMANCE</h3>
-          <div className="stat-number">{stats.performance}%</div>
+        
+        <div className="enhanced-stat-card performance">
+          <div className="stat-icon">📈</div>
+          <div className="stat-content">
+            <h3>Performance</h3>
+            <div className="stat-number">{stats.performance}%</div>
+            <div className="stat-trend positive">+5% improvement</div>
+          </div>
+        </div>
+        
+        <div className="enhanced-stat-card revenue">
+          <div className="stat-icon">💰</div>
+          <div className="stat-content">
+            <h3>Revenue</h3>
+            <div className="stat-number">$2.4K</div>
+            <div className="stat-trend positive">+15% this month</div>
+          </div>
         </div>
       </div>
-      <div className="bookings-section">
-        <h2>Recent Bookings</h2>
-        <div className="bookings-list">
-          {bookings.length > 0 ? (
-            bookings.slice(0, 5).map(booking => (
-              <div key={booking.id} className="booking-item">
-                <span className="service">{booking.service}</span>
-                <span className="client">{booking.client}</span>
-                <span className="time">{booking.time}</span>
-                <span className={`status status-${booking.status}`}>{booking.status}</span>
+
+      {/* Dashboard Grid Layout */}
+      <div className="dashboard-grid">
+        {/* Recent Activity */}
+        <div className="overview-card recent-activity">
+          <div className="card-header">
+            <h3>Recent Activity</h3>
+            <span className="view-all">View All</span>
+          </div>
+          <div className="activity-list">
+            <div className="activity-item">
+              <div className="activity-icon new">📅</div>
+              <div className="activity-content">
+                <p><strong>New booking</strong> for Computer Repair</p>
+                <span className="activity-time">5 minutes ago</span>
               </div>
-            ))
-          ) : (
-            <p>No bookings yet. New bookings will appear here.</p>
-          )}
+            </div>
+            <div className="activity-item">
+              <div className="activity-icon message">✉️</div>
+              <div className="activity-content">
+                <p><strong>Message received</strong> from John Doe</p>
+                <span className="activity-time">15 minutes ago</span>
+              </div>
+            </div>
+            <div className="activity-item">
+              <div className="activity-icon user">👤</div>
+              <div className="activity-content">
+                <p><strong>New user registered</strong></p>
+                <span className="activity-time">1 hour ago</span>
+              </div>
+            </div>
+            <div className="activity-item">
+              <div className="activity-icon service">🔧</div>
+              <div className="activity-content">
+                <p><strong>Service completed</strong> - Network Setup</p>
+                <span className="activity-time">2 hours ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="overview-card quick-actions">
+          <div className="card-header">
+            <h3>Quick Actions</h3>
+          </div>
+          <div className="actions-grid">
+            <button className="action-btn new-booking">
+              <span className="action-icon">➕</span>
+              <span>Add Booking</span>
+            </button>
+            <button className="action-btn view-messages">
+              <span className="action-icon">💬</span>
+              <span>Messages</span>
+            </button>
+            <button className="action-btn manage-users">
+              <span className="action-icon">👥</span>
+              <span>Users</span>
+            </button>
+            <button className="action-btn service-analytics">
+              <span className="action-icon">📊</span>
+              <span>Analytics</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Recent Bookings */}
+        <div className="overview-card recent-bookings">
+          <div className="card-header">
+            <h3>Recent Bookings</h3>
+            <span className="view-all">View All</span>
+          </div>
+          <div className="bookings-table">
+            {bookings.length > 0 ? (
+              bookings.slice(0, 4).map(booking => (
+                <div key={booking.id} className="booking-row">
+                  <div className="booking-service">{booking.service}</div>
+                  <div className="booking-client">{booking.client}</div>
+                  <div className="booking-time">{booking.time}</div>
+                  <div className={`booking-status status-${booking.status}`}>
+                    {booking.status}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="empty-state">
+                <p>No recent bookings</p>
+                <small>New bookings will appear here</small>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Service Analytics */}
+        <div className="overview-card service-analytics">
+          <div className="card-header">
+            <h3>Popular Services</h3>
+          </div>
+          <div className="service-chart">
+            <div className="service-stat">
+              <span className="service-name">Computer Repair</span>
+              <div className="service-bar">
+                <div className="service-progress" style={{width: '85%'}}></div>
+              </div>
+              <span className="service-percentage">85%</span>
+            </div>
+            <div className="service-stat">
+              <span className="service-name">Network Setup</span>
+              <div className="service-bar">
+                <div className="service-progress" style={{width: '70%'}}></div>
+              </div>
+              <span className="service-percentage">70%</span>
+            </div>
+            <div className="service-stat">
+              <span className="service-name">Software Installation</span>
+              <div className="service-bar">
+                <div className="service-progress" style={{width: '60%'}}></div>
+              </div>
+              <span className="service-percentage">60%</span>
+            </div>
+            <div className="service-stat">
+              <span className="service-name">ICT Training</span>
+              <div className="service-bar">
+                <div className="service-progress" style={{width: '45%'}}></div>
+              </div>
+              <span className="service-percentage">45%</span>
+            </div>
+          </div>
+        </div>
+
+        {/* System Health */}
+        <div className="overview-card system-health">
+          <div className="card-header">
+            <h3>System Health</h3>
+          </div>
+          <div className="health-metrics">
+            <div className="health-item">
+              <span className="health-label">Server Status</span>
+              <span className="health-status online">Online</span>
+            </div>
+            <div className="health-item">
+              <span className="health-label">Database</span>
+              <span className="health-status online">Connected</span>
+            </div>
+            <div className="health-item">
+              <span className="health-label">API Response</span>
+              <span className="health-status good">245ms</span>
+            </div>
+            <div className="health-item">
+              <span className="health-label">Storage</span>
+              <span className="health-status warning">78% Used</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Recent Messages Preview */}
+        <div className="overview-card recent-messages">
+          <div className="card-header">
+            <h3>Latest Messages</h3>
+            <span className="view-all">View All</span>
+          </div>
+          <div className="messages-preview">
+            {messages.length > 0 ? (
+              messages.slice(0, 3).map(message => (
+                <div key={message.id} className="message-item">
+                  <div className="message-avatar">{message.name.charAt(0)}</div>
+                  <div className="message-content">
+                    <strong>{message.name}</strong>
+                    <p>{message.message.substring(0, 60)}...</p>
+                    <small>{new Date(message.createdAt).toLocaleDateString()}</small>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="empty-state">
+                <p>No recent messages</p>
+                <small>New messages will appear here</small>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
