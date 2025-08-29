@@ -24,11 +24,20 @@ const BookingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://127.0.0.1:5000/api/bookings', formData);
-      setStatus('Booking submitted successfully!');
-      setFormData({ name: '', phone: '', email: '', service: '', message: '' });
+      const response = await axios.post('http://127.0.0.1:5000/api/bookings', formData);
+      if (response.data.success) {
+        setStatus(`Booking submitted successfully! Your verification code is: ${response.data.verification_code}`);
+        setFormData({ name: '', phone: '', email: '', service: '', message: '' });
+      } else {
+        setStatus(response.data.message || 'Something went wrong. Try again later.');
+      }
     } catch (err) {
-      setStatus('Something went wrong. Try again later.');
+      console.error('Booking submission error:', err);
+      if (err.response && err.response.data && err.response.data.message) {
+        setStatus(err.response.data.message);
+      } else {
+        setStatus('Something went wrong. Try again later.');
+      }
     }
   };
 
@@ -40,7 +49,7 @@ const BookingForm = () => {
         <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
         <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required />
         <select name="service" value={formData.service} onChange={handleChange} required>
-          {/* <option value="">Select a Service</option> */}
+          <option value="">Select a Service</option>
           <option value="Computer Repair">Computer Repair</option>
           <option value="Software Installation">Software Installation</option>
           <option value="Lab set-up">Lab set-up</option>

@@ -24,13 +24,11 @@
 }
 
 
-body, html {
-  font-family: 'Segoe UI', sans-serif;
-  background: #fff;
-  color: #333;
-  scroll-behavior: smooth;
-  line-height: 1.6;
-  ;
+/* Global body styles are defined in App.css - don't override here */
+.homepage {
+  background-color: #000;  /* Dark background for homepage */
+  color: #fff;             /* White text for contrast */
+  min-height: 100vh;       /* Full viewport height */
 }
 
 /* ===== Hero Section ===== */
@@ -161,7 +159,7 @@ font-size: large;
 /* ===== Services Section ===== */
 .services {
   padding: 80px 40px;
-  background: #fffefd;
+  background: #1a1a1a;  /* Dark background instead of white */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -215,7 +213,7 @@ font-size: large;
 }
 
 .services-text h4 {
-  color: #3c2210;
+  color: #f7c66b;  /* Golden color for visibility on dark background */
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 1px;
@@ -226,12 +224,12 @@ font-size: large;
   font-size: 32px;
   font-weight: 700;
   margin: 10px 0 20px;
-  color: #49290b;
+  color: #ffffff;  /* White for main heading */
 }
 
 .services-text p {
   margin-bottom: 20px;
-  color: #4b5563;
+  color: #e0e0e0;  /* Light gray for readability */
   font-size: 16px;
 }
 
@@ -240,7 +238,7 @@ font-size: large;
   margin-left: 20px;
   margin-bottom: 20px;
   line-height: 1.6;
-  color: #3a2105;
+  color: #d0d0d0;  /* Light gray for list items */
 }
 
 .services-text ul li {
@@ -250,12 +248,12 @@ font-size: large;
 /* ===== Why Choose Us Section ===== */
 .why-choose-us {
   padding: 80px 40px;
-  background: #f0f3f4;
+  background: #0a0a0a;  /* Slightly darker than services section for contrast */
   text-align: center;
 }
 
 .why-choose-us h4 {
-  color: #502a0e;
+  color: #f7c66b;  /* Golden color for consistency */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -266,7 +264,7 @@ font-size: large;
   font-size: 36px;
   font-weight: 700;
   margin: 10px 0 40px;
-  color: #351b06;
+  color: #ffffff;  /* White for visibility */
 }
 
 .choose-cards {
@@ -298,13 +296,13 @@ font-size: large;
 .choose-card h5 {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: #1f2937;  /* Dark color is fine since card background is white */
   margin-bottom: 10px;
 }
 
 .choose-card p {
   font-size: 14px;
-  color: #6b7280;
+  color: #4b5563;  /* Slightly darker for better contrast on white */
   line-height: 1.5;
 }
 
@@ -313,11 +311,11 @@ font-size: large;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 .text {
-  overflow: hidden;
-  white-space: nowrap;
-  /* border-left: 2px solid #ebe7e3; */
-  width: 0;
-  animation: typing 4s steps(40, end) forwards;
+  /* Removed typing animation - it was causing display issues */
+  overflow: visible;
+  white-space: normal;
+  width: 100%;
+  /* animation: typing 4s steps(40, end) forwards; */
 }
 
 @keyframes typing {
@@ -372,16 +370,7 @@ font-size: large;
     margin: 0 auto 10px;
     display: block;
   }
-  .navbar {
-    flex-direction: column;
-    text-align: center;
-  }
-  .call-info {
-    text-align: center;
-  }
-  .nav-links {
-    justify-content: center;
-  }
+  /* Navbar responsive styles are handled in Navbar.css */
 }
 
 @media (max-width: 480px) {
