@@ -317,8 +317,7 @@
 }
 
 .input-group input,
-.input-group textarea,
-.input-group select {
+.input-group textarea {
   width: 100%;
   padding: 1rem 1.5rem;
   border: 2px solid rgba(247, 198, 107, 0.2);
@@ -328,16 +327,42 @@
   font-family: inherit;
   transition: all 0.3s ease;
   color: #2d3748;
+}
+
+/* Modern Select Dropdown */
+.service-select {
+  width: 100%;
+  padding: 1rem 3.5rem 1rem 1.5rem;
+  border: 2px solid rgba(247, 198, 107, 0.3);
+  border-radius: 12px;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  color: #1a202c !important;
+  font-weight: 500;
   appearance: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .input-group input:focus,
-.input-group textarea:focus,
-.input-group select:focus {
+.input-group textarea:focus {
   outline: none;
   border-color: #f7c66b;
   background: rgba(255, 255, 255, 1);
   box-shadow: 0 0 0 3px rgba(247, 198, 107, 0.1);
+}
+
+.service-select:focus {
+  outline: none;
+  border-color: #f7c66b;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 3px rgba(247, 198, 107, 0.15);
+  transform: translateY(-1px);
 }
 
 .input-group textarea {
@@ -371,34 +396,130 @@
 }
 
 .service-select:focus {
-  outline: none;
-  border-color: #f7c66b;
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 0 0 3px rgba(247, 198, 107, 0.1);
+  outline: none !important;
+  border-color: #f7c66b !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(247, 198, 107, 0.15) !important;
   transform: translateY(-1px);
 }
 
 .service-select:hover {
-  border-color: rgba(247, 198, 107, 0.5);
-  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(247, 198, 107, 0.5) !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Custom dropdown options styling */
+/* Force white background on all dropdown states */
+select.service-select {
+  background-color: #ffffff !important;
+  color: #1a202c !important;
+}
+
+select.service-select:focus,
+select.service-select:active,
+select.service-select:hover {
+  background-color: #ffffff !important;
+  color: #1a202c !important;
+}
+
+/* Modern Custom Dropdown Options */
 .service-select option {
-  background: #fff;
-  color: #2d3748;
-  padding: 0.75rem 1rem;
-  font-weight: 500;
-  border-radius: 8px;
+  background-color: #ffffff !important;
+  color: #1a202c !important;
+  padding: 12px 16px !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
+  border: none !important;
+  font-family: inherit !important;
+}
+
+.service-select option:first-child {
+  background-color: #f8fafc !important;
+  color: #64748b !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+}
+
+.service-select option:not(:first-child) {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
 }
 
 .service-select option:checked {
-  background: linear-gradient(135deg, #f7c66b, #ca9c79);
-  color: #fff;
+  background-color: #f7c66b !important;
+  color: #1a202c !important;
+  font-weight: 700 !important;
 }
 
 .service-select option:hover {
-  background: rgba(247, 198, 107, 0.1);
+  background-color: #fef3cd !important;
+  color: #92400e !important;
+}
+
+/* Force browser compatibility for dropdown */
+.service-select {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Global override for all select dropdowns in this form */
+select, 
+select option {
+  background: white !important;
+  color: #1a202c !important;
+}
+
+/* Ensure dropdown menu container has white background */
+.glassmorphism-booking-form select {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+/* Additional browser-specific overrides */
+.service-select::-ms-expand {
+  display: none;
+}
+
+.service-select:-webkit-autofill,
+.service-select:-webkit-autofill:hover,
+.service-select:-webkit-autofill:focus {
+  background-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #1a202c !important;
+}
+
+/* Remove duplicate - styling moved above */
+
+/* Custom dropdown arrow */
+.input-group.select-wrapper {
+  position: relative;
+}
+
+.input-group.select-wrapper::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  color: #f7c66b;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.input-group.select-wrapper:hover::after {
+  color: #ca9c79;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.service-select:focus ~ .input-group.select-wrapper::after {
+  color: #ca9c79;
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .input-group input::placeholder,

@@ -147,7 +147,7 @@ const BookingForm = () => {
                       required 
                     />
                   </div>
-                  <div className="input-group">
+                  <div className="input-group select-wrapper">
                     <select 
                       name="service" 
                       value={formData.service} 
