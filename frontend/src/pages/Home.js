@@ -55,36 +55,37 @@ function Home() {
         </div>
       </header>
 
-      {/* Services Section */}
+      {/* Modern Services Section */}
       <section className="services">
-        <div className="service-cards fade-in-left">
-          <div className="card scale-in">
-            <FaLaptop className="icon" />
-            <span>Computer Repair</span>
+        <div className="services-container">
+          <div className="service-cards fade-in-left">
+            <div className="card scale-in">
+              <FaLaptop className="icon" />
+              <span>Computer Repair</span>
+            </div>
+            <div className="card scale-in">
+              <FaDownload className="icon" />
+              <span>Software Installation</span>
+            </div>
+            <div className="card scale-in">
+              <FaNetworkWired className="icon" />
+              <span>Network Setup</span>
+            </div>
+            <div className="card scale-in">
+              <FaChalkboardTeacher className="icon" />
+              <span>ICT Training</span>
+            </div>
           </div>
-          <div className="card scale-in">
-            <FaDownload className="icon" />
-            <span>Software Installation</span>
+          <div className="services-text fade-in-right">
+            <h4>Our Services</h4>
+            <h2>Best IT Solution For Your Business</h2>
+            <ul>
+              <li>Custom IT solutions designed to align with your business goals.</li>
+              <li>Proactive system monitoring and 24/7 technical support.</li>
+              <li>Comprehensive data protection and network security services.</li>
+              <li>Innovative infrastructure planning for long-term scalability.</li>
+            </ul>
           </div>
-          <div className="card scale-in">
-            <FaNetworkWired className="icon" />
-            <span>Network Setup</span>
-          </div>
-          <div className="card scale-in">
-            <FaChalkboardTeacher className="icon" />
-            <span>ICT Training</span>
-          </div>
-        </div>
-        <div className="services-text fade-in-right">
-          <h4>Our Services</h4>
-          <h2>Best IT Solution For Your Business</h2>
-          <ul>
-            <li>Custom IT solutions designed to align with your business goals.</li>
-            <li>Proactive system monitoring and 24/7 technical support.</li>
-            <li>Comprehensive data protection and network security services.</li>
-            <li>Innovative infrastructure planning for long-term scalability.</li>
-          </ul>
-          {/* <Link to="/services" className="btn-primary">Get Started</Link> */}
         </div>
       </section>
 

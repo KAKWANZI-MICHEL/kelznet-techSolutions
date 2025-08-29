@@ -333,40 +333,82 @@ body, html {
   border: 6px solid rgba(255, 255, 255, 0.2);
 }
 
-/* ===== Services Section ===== */
+/* ===== Modern Services Section ===== */
 .services {
-  padding: 80px 40px;
-  background: #fffefd;
+  padding: 100px 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(247, 198, 107, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(51, 23, 3, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 40px;
-  margin: 0 40px;
+  gap: 60px;
+  position: relative;
+  z-index: 2;
 }
 
 .service-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 30px;
   flex: 1;
-  min-width: 300px;
+  min-width: 400px;
 }
 
-.card {
-  background: #fff;
-  border-left: 5px solid #331703;
-  padding: 24px;
+.service-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(247, 198, 107, 0.2);
+  padding: 2rem;
   text-align: center;
-  border-radius: 12px;
-  transition: all 0.4s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.1);
   font-weight: 600;
-  color: #030000;
+  color: #1a1a1a;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
-.card::before {
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f7c66b, #ca9c79);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.service-card:hover::before {
+  transform: scaleX(1);
+}
+
+.service-card::after {
   content: '';
   position: absolute;
   top: 0;
@@ -374,36 +416,127 @@ body, html {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(247, 198, 107, 0.1), transparent);
-  transition: left 0.5s;
+  transition: left 0.6s ease;
+}
+
+.service-card:hover::after {
+  left: 100%;
+}
+
+.service-card .icon {
+  font-size: 3rem;
+  color: #331703;
+  margin-bottom: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.service-card span {
+  display: block;
+  font-size: 1.1rem;
+  color: #2d3748;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  line-height: 1.4;
+}
+
+.service-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 
+    0 20px 40px rgba(247, 198, 107, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgba(247, 198, 107, 0.4);
+}
+
+.service-card:hover .icon {
+  transform: scale(1.15) rotateY(360deg);
+  color: #f7c66b;
+  filter: drop-shadow(0 4px 8px rgba(247, 198, 107, 0.3));
+}
+
+/* Alternative service card naming for compatibility */
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(247, 198, 107, 0.2);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  color: #1a1a1a;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #f7c66b, #ca9c79);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
 }
 
 .card:hover::before {
+  transform: scaleX(1);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(247, 198, 107, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.card:hover::after {
   left: 100%;
 }
 
 .card .icon {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #331703;
-  margin-bottom: 1rem;
-  transition: all 0.4s ease;
+  margin-bottom: 1.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 2;
 }
 
 .card span {
   display: block;
-  font-size: 16px;
-  color: #1f2937;
+  font-size: 1.1rem;
+  color: #2d3748;
   font-weight: 600;
+  position: relative;
+  z-index: 2;
+  line-height: 1.4;
 }
 
 .card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(51, 23, 3, 0.2);
-  border-left-color: #f7c66b;
+  transform: translateY(-12px);
+  box-shadow: 
+    0 20px 40px rgba(247, 198, 107, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgba(247, 198, 107, 0.4);
 }
 
 .card:hover .icon {
-  transform: scale(1.2) rotateY(360deg);
+  transform: scale(1.15) rotateY(360deg);
   color: #f7c66b;
+  filter: drop-shadow(0 4px 8px rgba(247, 198, 107, 0.3));
 }
 
 .services-text {
@@ -412,39 +545,96 @@ body, html {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+}
+
+.services-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 60px;
+  background: linear-gradient(135deg, #f7c66b, #ca9c79);
+  border-radius: 2px;
 }
 
 .services-text h4 {
-  color: #3c2210;
+  color: #f7c66b;
   text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 1rem;
 }
 
 .services-text h2 {
-  font-size: 32px;
-  font-weight: 700;
-  margin: 10px 0 20px;
-  color: #49290b;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 2rem 0;
+  color: #1a202c;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .services-text p {
-  margin-bottom: 20px;
-  color: #4b5563;
-  font-size: 16px;
+  margin-bottom: 2rem;
+  color: #4a5568;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  font-weight: 400;
 }
 
 .services-text ul {
-  list-style: disc;
-  margin-left: 20px;
-  margin-bottom: 20px;
-  line-height: 1.6;
-  color: #3a2105;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2rem;
 }
 
 .services-text ul li {
-  margin: 8px 0;
+  position: relative;
+  padding: 0.75rem 0;
+  padding-left: 2rem;
+  color: #2d3748;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.services-text ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #f7c66b, #ca9c79);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(247, 198, 107, 0.3);
+}
+
+.services-text ul li:hover {
+  color: #1a202c;
+  transform: translateX(5px);
+}
+
+.services-text ul li:hover::before {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(247, 198, 107, 0.5);
 }
 
 /* ===== Why Choose Us Section ===== */
@@ -542,12 +732,17 @@ body, html {
   .text {
     margin-bottom: 50px;
   }
-  .services {
+  .services-container {
     flex-direction: column;
+    gap: 40px;
   }
   .services-text {
     padding-left: 0;
-    margin-top: 30px;
+    margin-top: 0;
+    text-align: center;
+  }
+  .services-text::before {
+    display: none;
   }
   .service-cards {
     grid-template-columns: 1fr;
@@ -592,11 +787,25 @@ body, html {
   .text h1 {
     font-size: 32px;
   }
-  .section,
+  .services {
+    padding: 60px 0;
+  }
+  .services-container {
+    padding: 0 1rem;
+    gap: 30px;
+  }
+  .service-cards {
+    min-width: auto;
+  }
+  .services-text h2 {
+    font-size: 1.8rem;
+  }
+  .services-text h4 {
+    font-size: 0.8rem;
+  }
   .why-choose-us {
     padding: 60px 20px;
   }
-  .services-text h2,
   .why-choose-us h2 {
     font-size: 28px;
   }

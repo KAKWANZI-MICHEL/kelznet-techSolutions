@@ -4,9 +4,11 @@ import '../styles/DashboardContent.css';
 
 const DashboardContent = ({ activePage }) => {
   const [bookings, setBookings] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [stats, setStats] = useState({
     users: 0,
     bookings: 0,
+    messages: 0,
     services: 0,
     performance: 75
   });
@@ -38,15 +40,40 @@ const DashboardContent = ({ activePage }) => {
     }
   }, []);
 
-  // Fetch bookings on component mount and set up periodic refresh
+  // Fetch contact messages from backend API
+  const fetchMessages = useCallback(async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/api/v1/contact_bp/contact');
+      const messagesData = response.data.messages.map(msg => ({
+        id: msg.id,
+        name: msg.name,
+        email: msg.email,
+        message: msg.message,
+        createdAt: msg.created_at
+      }));
+      setMessages(messagesData);
+      setStats(prevStats => ({
+        ...prevStats,
+        messages: messagesData.length
+      }));
+    } catch (error) {
+      console.error('Error fetching messages:', error);
+    }
+  }, []);
+
+  // Fetch data on component mount and set up periodic refresh
   useEffect(() => {
     fetchBookings();
+    fetchMessages();
     
-    // Refresh bookings every 10 seconds
-    const interval = setInterval(fetchBookings, 10000);
+    // Refresh data every 10 seconds
+    const interval = setInterval(() => {
+      fetchBookings();
+      fetchMessages();
+    }, 10000);
     
     return () => clearInterval(interval);
-  }, [fetchBookings]);
+  }, [fetchBookings, fetchMessages]);
 
   // Individual page components
   const DashboardOverview = () => (
@@ -59,6 +86,10 @@ const DashboardContent = ({ activePage }) => {
         <div className="stat-card">
           <h3>BOOKINGS</h3>
           <div className="stat-number">{stats.bookings}</div>
+        </div>
+        <div className="stat-card">
+          <h3>MESSAGES</h3>
+          <div className="stat-number">{stats.messages}</div>
         </div>
         <div className="stat-card">
           <h3>SERVICES</h3>
@@ -119,12 +150,46 @@ const DashboardContent = ({ activePage }) => {
     </div>
   );
 
-  const MessagesPage = () => (
-    <div className="page-content">
-      <h2>Contact Messages</h2>
-      <p>Customer messages and inquiries will be displayed here.</p>
-    </div>
-  );
+  const MessagesPage = () => {
+    const handleDeleteMessage = async (messageId) => {
+      try {
+        await axios.delete(`http://127.0.0.1:5000/api/v1/contact_bp/contact/${messageId}`);
+        fetchMessages(); // Refresh messages after deletion
+      } catch (error) {
+        console.error('Error deleting message:', error);
+        alert('Failed to delete message');
+      }
+    };
+
+    return (
+      <div className="page-content">
+        <h2>Contact Messages</h2>
+        <div className="messages-grid">
+          {messages.length > 0 ? (
+            messages.map(msg => (
+              <div key={msg.id} className="message-card">
+                <div className="message-header">
+                  <h4>{msg.name}</h4>
+                  <span className="message-date">{new Date(msg.createdAt).toLocaleString()}</span>
+                </div>
+                <p className="message-email"><strong>Email:</strong> {msg.email}</p>
+                <div className="message-content">
+                  <strong>Message:</strong>
+                  <p>{msg.message}</p>
+                </div>
+                <div className="message-actions">
+                  <a href={`mailto:${msg.email}`} className="btn-reply">Reply via Email</a>
+                  <button className="btn-delete" onClick={() => handleDeleteMessage(msg.id)}>Delete</button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>No messages found. Contact form submissions will appear here.</p>
+          )}
+        </div>
+      </div>
+    );
+  };
 
   const UsersPage = () => (
     <div className="page-content">
