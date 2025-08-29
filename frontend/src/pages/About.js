@@ -1,13 +1,41 @@
 
-
+import React, { useEffect, useRef } from 'react';
 import '../styles/About.css';
 import network_set from '../Image/network_set.png';
 import training_ict from '../Image/training_ict.png';
 import comp_repair from '../Image/comp_repair.png';
 
-
-
 const AboutUs = () => {
+  const observerRef = useRef();
+  
+  useEffect(() => {
+    // Create intersection observer for scroll animations
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    // Observe all elements with scroll animation classes
+    const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+    animatedElements.forEach((el) => {
+      observerRef.current.observe(el);
+    });
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
   
   const sections = [
     {
@@ -34,20 +62,66 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="contained">
-      <h1>About Us</h1>
-      <p className='about'>We provide services including lab set-up, computer repair, network setup, software Installation which caters to tech needs with expertise in these areas.</p>
-      {sections.map((section) => (
-        <div key={section.id} className="section">
-          <div className="image-container">
-            <img src={section.imageUrl} alt={section.title} />
-          </div>
-          <div className="text-container">
-            <h2 className="title1">{section.title}</h2>
-            <p className="description">{section.description}</p>
+    <div className="about-page">
+      {/* Modern Hero Section with Particles */}
+      <section className="about-hero">
+        <div className="about-hero-content">
+          <div className="hero-text">
+            <h4 className="fade-in-up">Learn More About Us</h4>
+            <h1 className="fade-in-up">About KelzNet Tech Solutions</h1>
+            <p className="intro-text fade-in-up">
+              We provide comprehensive IT services including lab set-up, computer repair, network setup, 
+              and software installation. Our expertise caters to all your tech needs with professional 
+              excellence and innovation.
+            </p>
           </div>
         </div>
-      ))}
+      </section>
+
+      {/* Modern About Sections */}
+      <section className="modern-about-sections">
+        <div className="about-container">
+          <div className="about-header fade-in-up">
+            <h4>Who We Are</h4>
+            <h2>Our Story & Values</h2>
+          </div>
+
+          <div className="about-grid">
+            {sections.map((section, index) => (
+              <div 
+                key={section.id} 
+                className={`modern-about-card ${index % 2 === 1 ? 'reverse' : ''} fade-in-up`}
+                style={{ '--delay': `${index * 0.2}s` }}
+              >
+                <div className="about-image-wrapper">
+                  <img src={section.imageUrl} alt={section.title} />
+                </div>
+                <div className="about-text-content">
+                  <h3 className="about-title">{section.title}</h3>
+                  <p className="about-description">{section.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Modern CTA Section */}
+      <section className="modern-about-cta">
+        <div className="cta-container">
+          <div className="cta-content fade-in-up">
+            <h2>Ready to Work with Us?</h2>
+            <p>
+              Let's discuss how our expertise can help transform your technology infrastructure 
+              and drive your business forward with innovative solutions.
+            </p>
+            <div className="cta-buttons">
+              <a href="/contact" className="modern-btn-primary">Get in Touch</a>
+              <a href="/services" className="modern-btn-secondary">View Our Services</a>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
