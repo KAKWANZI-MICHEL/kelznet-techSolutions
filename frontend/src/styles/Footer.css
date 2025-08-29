@@ -1,0 +1,100 @@
+/* === Footer Container === */
+.footer-container {
+  background-color: #271602; /* Dark brown */
+  color: #ecf0f1; /* Light text */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-top: 2rem;
+}
+
+/* === Footer Main Content === */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* === Footer Sections === */
+.footer-section {
+  flex: 1 1 250px;
+  min-width: 250px;
+}
+
+.footer-section h3 {
+  color: #f4e1c1; /* Cream heading */
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f4e1c1;
+}
+
+.footer-section.about-us .tagline {
+  font-style: italic;
+  color: #bdc3c7;
+  
+}
+
+/* === Footer Lists === */
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* === Icons === */
+.footer-section i {
+  color: #f4e1c1;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* === Links === */
+.footer-section a {
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #f4e1c1;
+}
+
+/* === Footer Bottom === */
+.footer-bottom {
+  background-color: #1a0800; /* Slightly darker brown */
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #bdc3c7;
+}
+
+.footer-section.services{
+  background-color: #271602;
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-section li {
+    justify-content: center;
+  }
+}

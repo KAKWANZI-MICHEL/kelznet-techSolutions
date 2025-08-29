@@ -1,6 +1,37 @@
 {
-  "dependencies": {
-    "cors": "^2.8.5",
-    "mail": "^0.2.3"
-  }
+  "name": "kelznet-tech-solutions",
+  "version": "1.0.0",
+  "description": "Full-stack monorepo for Kelznet Tech Solutions with React frontend and Flask backend",
+  "scripts": {
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "frontend:dev": "cd frontend && npm start",
+    "frontend:build": "cd frontend && npm run build",
+    "frontend:test": "cd frontend && npm test",
+    "frontend:install": "cd frontend && npm install",
+    "backend:dev": "cd backend && python run.py",
+    "backend:install": "cd backend && pip install -r requirement.txt",
+    "install": "npm run frontend:install && npm run backend:install",
+    "build": "npm run frontend:build",
+    "setup": "npm install concurrently && npm run install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KAKWANZI-MICHEL/kelznet-tech.git"
+  },
+  "keywords": [
+    "react",
+    "flask",
+    "monorepo",
+    "fullstack",
+    "tech-solutions"
+  ],
+  "author": "Kelznet Tech Solutions",
+  "license": "ISC",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
 }

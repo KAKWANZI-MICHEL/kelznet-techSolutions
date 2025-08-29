@@ -1,0 +1,97 @@
+/* === Navbar container === */
+.navbar {
+  background-color: #271602;      /* Sets a dark brown background color for the navbar */
+  display: flex;                  /* Use Flexbox to layout children (logo and nav links) */
+  justify-content: space-between;/* Places logo on the left and links on the right */
+  align-items: center;           /* Vertically centers the items in the navbar */
+  padding: 0 20px;               /* Horizontal padding on left and right */
+  margin: 0;                     /* Removes default outer margin */
+  height: 70px;                  /* Fixes the navbar height */
+  position: relative;            /* Allows absolute positioning of dropdown in responsive mode */
+  z-index: 10;                   /* Ensures navbar appears above other elements */
+}
+
+/* === Logo section === */
+.logo {
+  display: flex;                 /* Aligns logo image and text horizontally */
+  align-items: center;          /* Vertically centers the logo content */
+  font-size: 1.2rem;            /* Sets font size for logo text if used */
+  color: #fff;                  /* White text color */
+}
+
+/* Optional logo icon (not used but structured) */
+.logo-icon {
+  font-size: 0rem;              /* Hides text-based icon if used */
+  margin-right: 0.5rem;         /* Spacing between icon and logo image */
+}
+
+/* Logo image */
+.logo-image {
+  width: 50px;                  /* Width of the logo image */
+}
+
+/* === Navigation Links Container === */
+.nav-links {
+  display: flex;                /* Layout nav links in a row */
+  list-style: none;            /* Removes bullet points from list items */
+  gap: 1.5rem;                  /* Spacing between each nav item */
+  justify-content: center;     /* Centers nav items horizontally */
+  align-items: center;         /* Vertically aligns nav items */
+}
+
+/* === Styling for each link inside nav bar === */
+.nav-links li a {
+  color: #fff;                  /* White link text */
+  font-weight: 500;            /* Medium font weight for better readability */
+  text-decoration: none;       /* Removes underline from links */
+  font-size: 16px;             /* Sets readable font size */
+  transition: color 0.3s;      /* Smooth color change when hovered */
+}
+
+/* === Hover effect for nav links === */
+.nav-links li a:hover {
+  color: #8b3503;              /* Changes to light brown/orange on hover */
+}
+
+/* === Hamburger Menu Icon (for small screens) === */
+.hamburger {
+  display: none;               /* Hidden by default (only shown on small screens) */
+  flex-direction: column;      /* Arranges the 3 bars vertically */
+  cursor: pointer;             /* Makes cursor a pointer (clickable) */
+  gap: 5px;                    /* Spacing between each line in hamburger icon */
+}
+
+/* === Hamburger menu lines (3 bars) === */
+.hamburger span {
+  height: 3px;                 /* Height of each bar */
+  width: 25px;                 /* Width of each bar */
+  background-color: #fff;      /* White color bars */
+  border-radius: 3px;          /* Rounded edges for a smoother look */
+}
+
+/* === Responsive styling for mobile/tablets (max width: 768px) === */
+@media (max-width: 768px) {
+  
+  /* Mobile nav links (dropdown style) */
+  .nav-links {
+    position: absolute;        /* Allows the nav to float below the navbar */
+    top: 70px;                 /* Positions it directly below navbar */
+    right: 0;                  /* Aligns it to the right */
+    width: 100%;               /* Full width on small screens */
+    background-color: #271602;/* Matches navbar color */
+    flex-direction: raw;    /* Stack links vertically */
+    gap: 20px;                 /* Adds vertical spacing between links */
+    padding: 30px 0;           /* Padding above and below the link list */
+    display: none;             /* Hidden by default until toggled */
+  }
+
+  /* When nav is active (JS adds `.active`), show the links */
+  .nav-links.active {
+    display: flex;             /* Makes nav links visible as a vertical dropdown */
+  }
+
+  /* Show hamburger on mobile */
+  .hamburger {
+    display: flex;             /* Show hamburger icon in mobile view */
+  }
+}
