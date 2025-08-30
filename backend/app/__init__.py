@@ -49,6 +49,7 @@ def create_app():
     from app.controllers.footer_controller import footer_bp
     from app.controllers.contact_controller import contact_bp as contact_banner_bp
     from app.controllers.admin_login_controller import admin_bp
+    from app.controllers.performance_controller import performance_bp
 
     # Blueprint registration
     app.register_blueprint(auth_bp)
@@ -61,6 +62,7 @@ def create_app():
     app.register_blueprint(footer_bp)
     app.register_blueprint(booking_bp)
     app.register_blueprint(about_bp)
+    app.register_blueprint(performance_bp)
 
     # Simple route for testing
     @app.route('/manual', methods=["GET"])

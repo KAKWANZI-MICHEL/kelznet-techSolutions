@@ -29,7 +29,8 @@ const DashboardContent = ({ activePage }) => {
   const [trends, setTrends] = useState({
     users: { percentage: 0, period: 'month', direction: 'neutral' },
     bookings: { percentage: 0, period: 'week', direction: 'neutral' },
-    messages: { percentage: 0, period: 'week', direction: 'neutral' }
+    messages: { percentage: 0, period: 'week', direction: 'neutral' },
+    performance: { percentage: 0, direction: 'neutral' }
   });
 
   const [previousStats, setPreviousStats] = useState({
@@ -145,6 +146,29 @@ const DashboardContent = ({ activePage }) => {
     }
   }, []);
 
+  // Fetch performance data from backend API
+  const fetchPerformance = useCallback(async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/api/performance/booking-verification');
+      const performanceData = response.data;
+      
+      setStats(prevStats => ({
+        ...prevStats,
+        performance: performanceData.performance_percentage
+      }));
+
+      setTrends(prevTrends => ({
+        ...prevTrends,
+        performance: {
+          percentage: Math.abs(performanceData.trend_percentage),
+          direction: performanceData.trend_percentage > 0 ? 'positive' : performanceData.trend_percentage < 0 ? 'negative' : 'neutral'
+        }
+      }));
+    } catch (error) {
+      console.error('Error fetching performance data:', error);
+    }
+  }, []);
+
   // Fetch contact messages from backend API
   const fetchMessages = useCallback(async () => {
     try {
@@ -186,6 +210,7 @@ const DashboardContent = ({ activePage }) => {
     fetchServices();
     fetchBookings();
     fetchMessages();
+    fetchPerformance();
     
     // Refresh data every 30 seconds (reduced from 10 to prevent server overload)
     const interval = setInterval(() => {
@@ -200,10 +225,11 @@ const DashboardContent = ({ activePage }) => {
       fetchServices();
       fetchBookings();
       fetchMessages();
-      }, 30000);
-      
-      return () => clearInterval(interval);
-  }, [fetchUsers, fetchServices, fetchBookings, fetchMessages, stats.users, stats.bookings, stats.messages]);
+      fetchPerformance();
+    }, 30000);
+    
+    return () => clearInterval(interval);
+  }, [fetchUsers, fetchServices, fetchBookings, fetchMessages, fetchPerformance, stats.users, stats.bookings, stats.messages]);
 
   // Enhanced Dashboard Overview Component
   const DashboardOverview = () => (
@@ -263,7 +289,9 @@ const DashboardContent = ({ activePage }) => {
           <div className="stat-content">
             <h3>Performance</h3>
             <div className="stat-number">{stats.performance}%</div>
-            <div className="stat-trend positive">+5% improvement</div>
+            <div className={`stat-trend ${trends.performance.direction}`}>
+              {trends.performance.percentage > 0 ? `${trends.performance.direction === 'positive' ? '+' : '-'}${trends.performance.percentage}%` : '0%'} improvement
+            </div>
           </div>
         </div>
         
