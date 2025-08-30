@@ -14,10 +14,12 @@ import {
   FaComments,
   FaChartBar
 } from 'react-icons/fa';
+import AddBookingModal from './AddBookingModal';
 
-const DashboardContent = ({ activePage }) => {
+const DashboardContent = ({ activePage, setActivePage }) => {
   const [bookings, setBookings] = useState([]);
   const [messages, setMessages] = useState([]);
+  const [isAddBookingModalOpen, setIsAddBookingModalOpen] = useState(false);
   const [stats, setStats] = useState({
     users: 0,
     bookings: 0,
@@ -351,24 +353,24 @@ const DashboardContent = ({ activePage }) => {
             <h3>Quick Actions</h3>
           </div>
           <div className="actions-grid">
-            <button className="action-btn new-booking">
+            <button className="action-btn new-booking" onClick={() => setIsAddBookingModalOpen(true)}>
               <span className="action-icon"><FaPlus /></span>
               <span>Add Booking</span>
             </button>
-            <button className="action-btn view-messages">
+            <button className="action-btn view-messages" onClick={() => setActivePage('messages')}>
               <span className="action-icon"><FaComments /></span>
               <span>Messages</span>
             </button>
-            <button className="action-btn manage-users">
+            <button className="action-btn manage-users" onClick={() => setActivePage('users')}>
               <span className="action-icon"><FaUsers /></span>
               <span>Users</span>
             </button>
-            <button className="action-btn service-analytics">
+            <button className="action-btn service-analytics" onClick={() => setActivePage('analytics')}>
               <span className="action-icon"><FaChartBar /></span>
               <span>Analytics</span>
             </button>
-            </div>
           </div>
+        </div>
 
         {/* Recent Bookings */}
         <div className="overview-card recent-bookings">
@@ -574,10 +576,24 @@ const DashboardContent = ({ activePage }) => {
     </div>
   );
 
+  const AnalyticsPage = () => (
+    <div className="page-content">
+      <h2>Analytics & Reports</h2>
+      <p>Advanced analytics and reporting features will be available here soon.</p>
+    </div>
+  );
+
   // Page switching is now handled directly in JSX below
 
   return (
     <div className="dashboard-content">{/* Remove embedded sidebar - use separate Sidebar component */}
+
+      {isAddBookingModalOpen && (
+        <AddBookingModal 
+          closeModal={() => setIsAddBookingModalOpen(false)}
+          refreshBookings={fetchBookings}
+        />
+      )}
 
       {/* Main content area with dynamic page switching */}
       <div className="content-area">
@@ -592,6 +608,7 @@ const DashboardContent = ({ activePage }) => {
           {activePage === 'messages' && <MessagesPage />}
           {activePage === 'users' && <UsersPage />}
           {activePage === 'services' && <ServicesPage />}
+          {activePage === 'analytics' && <AnalyticsPage />}
         </main>
       </div>
     </div>

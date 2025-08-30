@@ -9,6 +9,7 @@ import {
   FaTools,
   FaSignOutAlt,
   FaLaptopCode,
+  FaChartBar
 } from "react-icons/fa";
 
 const Sidebar = ({ setActivePage, activePage = 'overview' }) => {
@@ -58,6 +59,13 @@ const Sidebar = ({ setActivePage, activePage = 'overview' }) => {
         >
           <FaTools className="icon" />
           Services
+        </button>
+        <button 
+          className={activePage === 'analytics' ? 'active' : ''}
+          onClick={() => setActivePage("analytics")}
+        >
+          <FaChartBar className="icon" />
+          Analytics
         </button>
       </nav>
       <div className="sidebar-footer">

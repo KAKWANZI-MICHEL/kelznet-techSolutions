@@ -13,7 +13,7 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard-layout">
       <Sidebar setActivePage={setActivePage} activePage={activePage} />
-      <DashboardContent activePage={activePage} />
+      <DashboardContent activePage={activePage} setActivePage={setActivePage} />
     </div>
   );
 };
