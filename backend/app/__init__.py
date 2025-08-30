@@ -13,7 +13,7 @@ def create_app():
     db.init_app(app)
     jwt.init_app(app)
     cors.init_app(app, resources={
-        r"/api/*": {
+        r"/v1/*": {
             "origins": ["http://localhost:3000", "http://127.0.0.1:3000"],
             "allow_headers": ["Content-Type", "Authorization"],
             "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]

@@ -100,7 +100,7 @@ from app.model.service import Service           # Importing the Service model (r
 from app.extensions import db                   # Importing the database instance (SQLAlchemy)
 
 # Create a Blueprint for services (groups routes under a common URL prefix)
-service_bp = Blueprint('service_bp', __name__, url_prefix='/api/v1/service_bp')
+service_bp = Blueprint('service_bp', __name__, url_prefix='/v1/service_bp')
 
 # 🔹 GET all services
 @service_bp.route('/services', methods=['GET'])  # Route for fetching all services, using HTTP GET

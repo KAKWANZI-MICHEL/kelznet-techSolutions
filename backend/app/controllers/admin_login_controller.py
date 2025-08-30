@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.model.auth import User
 
-admin_bp = Blueprint('admin_bp', __name__, url_prefix='/api/v1/admin')
+admin_bp = Blueprint('admin_bp', __name__, url_prefix='/v1/admin')
 
 # 🔹 Admin dashboard landing page (protected)
 @admin_bp.route('/dashboard', methods=['GET'])

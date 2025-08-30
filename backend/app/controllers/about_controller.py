@@ -96,7 +96,7 @@ def admin_edit_about():
 
 # --- API (Optional) ---
 # GET JSON data
-@about_bp.route('/api/about', methods=['GET'])
+@about_bp.route('/v1/about', methods=['GET'])
 def api_about():
     about = get_or_create_about()
     if hasattr(about, 'error'):

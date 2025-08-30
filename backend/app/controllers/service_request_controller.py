@@ -4,7 +4,7 @@ from app.model.serviceRequest import ServiceRequest  # Import the ServiceRequest
 from app.extensions import db   # Import the db object (SQLAlchemy instance) to interact with the database
 
 # ✅ Define the blueprint
-service_request_bp = Blueprint('service_request_bp', __name__,url_prefix='/api/v1/service_request_bp')  # Create a blueprint named 'service_request_bp' with base URL prefix
+service_request_bp = Blueprint('service_request_bp', __name__,url_prefix='/v1/service_request_bp')  # Create a blueprint named 'service_request_bp' with base URL prefix
 
 # 🔹 Create a new service request
 @service_request_bp.route('/service-requests', methods=['POST'])   # Define POST endpoint for creating a new service request

@@ -18,7 +18,8 @@ const AddBookingModal = ({ closeModal, refreshBookings }) => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:5000/api/v1/service_bp/services');
+        const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+        const response = await axios.get(`${API_BASE}/service_bp/services`);
         if (response.data && response.data.services) {
           setServices(response.data.services);
         }
@@ -46,7 +47,8 @@ const AddBookingModal = ({ closeModal, refreshBookings }) => {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/api/bookings', formData);
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const response = await axios.post(`${API_BASE.replace('/v1','')}/v1/bookings`, formData);
       setSuccess(response.data.message || 'Booking created successfully!');
       
       // Refresh the bookings list on the dashboard

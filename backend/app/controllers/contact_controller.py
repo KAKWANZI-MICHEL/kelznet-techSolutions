@@ -136,14 +136,14 @@ def admin_manage_banner():
 
 
 # --- API: Get Messages ---
-@contact_bp.route('/api/contact/messages', methods=['GET'])
+@contact_bp.route('/v1/contact/messages', methods=['GET'])
 def api_list_messages():
     messages = ContactMessage.query.order_by(ContactMessage.created_at.desc()).all()
     return jsonify([msg.as_dict() for msg in messages])
 
 
 # --- API: Get Banner ---
-@contact_bp.route('/api/contact/banner', methods=['GET'])
+@contact_bp.route('/v1/contact/banner', methods=['GET'])
 def api_get_banner():
     banner = get_or_create_banner()
     return jsonify({

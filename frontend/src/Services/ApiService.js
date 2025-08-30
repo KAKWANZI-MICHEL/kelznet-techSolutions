@@ -1,11 +1,16 @@
 import axios from "axios";
 
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "/api/v1"
+    : "http://127.0.0.1:5000/v1";
+
 // Base URLs
-const AUTH_URL = "http://127.0.0.1:5000/api/v1/auth";
-const MESSAGES_URL = "http://127.0.0.1:5000/api/v1/messages";
-const REQUESTS_URL = "http://127.0.0.1:5000/api/v1/requests";
-const SERVICES_URL = "http://127.0.0.1:5000/api/v1/services";
-const USERS_URL = "http://127.0.0.1:5000/api/v1/users";
+const AUTH_URL = `${API_URL}/auth`;
+const MESSAGES_URL = `${API_URL}/messages`;
+const REQUESTS_URL = `${API_URL}/requests`;
+const SERVICES_URL = `${API_URL}/services`;
+const USERS_URL = `${API_URL}/users`;
 
 // ---------- AUTH ----------
 

@@ -3,7 +3,7 @@ from app.extensions import db
 from app.model.booking import Booking
 from datetime import datetime, timedelta
 
-performance_bp = Blueprint('performance_bp', __name__, url_prefix='/api/performance')
+performance_bp = Blueprint('performance_bp', __name__, url_prefix='/v1/performance')
 
 @performance_bp.route('/booking-verification', methods=['GET'])
 def get_booking_verification_performance():

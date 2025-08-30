@@ -5,7 +5,7 @@ from app.extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import timedelta
 
-auth_bp = Blueprint('auth', __name__, url_prefix='/api/v1/auth')
+auth_bp = Blueprint('auth', __name__, url_prefix='/v1/auth')
 
 # Helper function: verify user
 def get_user(email, password):

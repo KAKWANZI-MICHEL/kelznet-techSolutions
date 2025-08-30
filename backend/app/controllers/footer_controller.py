@@ -60,7 +60,7 @@ def manage_footer():
     return render_template('admin/footer_form.html', footer=footer)
 
 # --- API: Get Footer Data (for frontend or SPA) ---
-@footer_bp.route('/api/footer', methods=['GET'])
+@footer_bp.route('/v1/footer', methods=['GET'])
 def api_get_footer():
     footer = get_footer()
     return jsonify(footer.to_dict())
@@ -68,7 +68,7 @@ def api_get_footer():
 # --- API: Bulk Update or Add Links (Optional: support multiple links) ---
 # If you want multiple quick links, consider a separate QuickLink model.
 # But for now, this updates the single record.
-@footer_bp.route('/api/footer', methods=['PUT'])
+@footer_bp.route('/v1/footer', methods=['PUT'])
 def api_update_footer():
     footer = get_footer()
     data = request.get_json()

@@ -5,7 +5,7 @@ from app.model.auth import User   # Import the User model (represents the user t
 from app.extensions import db   # Import SQLAlchemy database instance for queries and transactions
 import re   # Import regex module for email validation
 
-user_bp = Blueprint('user_bp', __name__, url_prefix='/api/v1/user_bp')   # Create a Flask blueprint for user routes with a URL prefix
+user_bp = Blueprint('user_bp', __name__, url_prefix='/v1/user_bp')   # Create a Flask blueprint for user routes with a URL prefix
 
 # 🔹 Email validation regex
 def is_valid_email(email):   # Function to check if email is valid using regex

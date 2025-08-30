@@ -65,7 +65,8 @@ const ContactUs = () => {
         message: `${formData.message}\n\nAddress: ${formData.address}\nPhone: ${formData.phone}`
       };
 
-      const response = await axios.post('http://127.0.0.1:5000/api/v1/contact_bp/contact', dataToSend);
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const response = await axios.post(`${API_BASE}/contact_bp/contact`, dataToSend);
       
       if (response.status === 201) {
         setSubmitStatus('Thank you for your message! We will get back to you soon.');

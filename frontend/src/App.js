@@ -61,7 +61,8 @@ const Layout = () => {
 
 function App() {
   useEffect(() => {
-    axios.get("http://127.0.0.1:5000/manual")
+    const BASE = process.env.NODE_ENV === 'production' ? '/' : 'http://127.0.0.1:5000/';
+    axios.get(`${BASE}manual`)
       .then(response => {
         console.log(response.data);
       })

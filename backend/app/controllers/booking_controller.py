@@ -118,7 +118,7 @@ def cancel_booking(booking_id):
     return redirect(url_for('booking.list_bookings'))
 
 # --- API: Create Booking via JSON ---
-@booking_bp.route('/api/bookings', methods=['POST'])
+@booking_bp.route('/v1/bookings', methods=['POST'])
 def api_create_booking():
     try:
         data = request.get_json()
@@ -172,7 +172,7 @@ def api_create_booking():
         }), 500
 
 # --- API: List Bookings as JSON ---
-@booking_bp.route('/api/bookings', methods=['GET'])
+@booking_bp.route('/v1/bookings', methods=['GET'])
 def api_list_bookings():
     bookings = Booking.query.all()
     result = []
@@ -193,7 +193,7 @@ def api_list_bookings():
     return jsonify(result)
 
 # --- API: Verify Booking with Code ---
-@booking_bp.route('/api/bookings/verify', methods=['POST'])
+@booking_bp.route('/v1/bookings/verify', methods=['POST'])
 def verify_booking():
     data = request.json
     code = data.get('verification_code')

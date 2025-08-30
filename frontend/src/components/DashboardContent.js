@@ -84,7 +84,8 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch real bookings from backend API
   const fetchBookings = useCallback(async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/bookings');
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const response = await axios.get(`${API_BASE}/bookings`);
       const bookingsData = response.data.map(booking => ({
         id: booking.booking_id,
         service: booking.service_name,
@@ -116,7 +117,8 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch users from backend API
   const fetchUsers = useCallback(async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/v1/user_bp/users');
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const response = await axios.get(`${API_BASE}/user_bp/users`);
       const usersData = response.data;
       setStats(prevStats => {
         const newStats = {
@@ -139,7 +141,8 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch services from backend API
   const fetchServices = useCallback(async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/v1/service_bp/services');
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const response = await axios.get(`${API_BASE}/service_bp/services`);
       const servicesData = response.data.services;
     setStats(prevStats => ({
       ...prevStats,
@@ -154,7 +157,8 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch performance data from backend API
   const fetchPerformance = useCallback(async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/performance/booking-verification');
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const response = await axios.get(`${API_BASE.replace('/v1','')}/v1/performance/booking-verification`);
       const performanceData = response.data;
       
       setStats(prevStats => ({
@@ -177,7 +181,8 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch contact messages from backend API
   const fetchMessages = useCallback(async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/v1/contact_bp/contact');
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const response = await axios.get(`${API_BASE}/contact_bp/contact`);
       const messagesData = response.data.messages.map(msg => ({
         id: msg.id,
         name: msg.name,
@@ -527,7 +532,8 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   const MessagesPage = () => {
     const handleDeleteMessage = async (messageId) => {
       try {
-        await axios.delete(`http://127.0.0.1:5000/api/v1/contact_bp/contact/${messageId}`);
+        const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+        await axios.delete(`${API_BASE}/contact_bp/contact/${messageId}`);
         fetchMessages(); // Refresh messages after deletion
       } catch (error) {
         console.error('Error deleting message:', error);

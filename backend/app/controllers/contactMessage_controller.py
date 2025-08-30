@@ -4,7 +4,7 @@ from flask import Blueprint, request, jsonify  # Import Flask tools: Blueprint (
 from app.model.contactMessage import ContactMessage  # Import the ContactMessage model (represents messages table in DB)
 from app.extensions import db  # Import database connection (SQLAlchemy instance)
 
-contact_bp = Blueprint('contact_bp', __name__, url_prefix='/api/v1/contact_bp')  # Create a blueprint for contact routes with a URL prefix
+contact_bp = Blueprint('contact_bp', __name__, url_prefix='/v1/contact_bp')  # Create a blueprint for contact routes with a URL prefix
 
 # 🔹 POST: Send a contact message
 @contact_bp.route('/contact', methods=['POST'])  # Define POST route /api/v1/contact_bp/contact

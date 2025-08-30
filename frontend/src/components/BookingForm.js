@@ -55,7 +55,8 @@ const BookingForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:5000/api/bookings', formData);
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const response = await axios.post(`${API_BASE.replace('/v1','')}/v1/bookings`, formData);
       if (response.data.success) {
         setStatus(`Booking submitted successfully! Your verification code is: ${response.data.verification_code}`);
         setFormData({ name: '', phone: '', email: '', service: '', message: '' });
