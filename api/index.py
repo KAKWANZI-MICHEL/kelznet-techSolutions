@@ -8,12 +8,14 @@ BACKEND_DIR = os.path.join(REPO_ROOT, "backend")
 if BACKEND_DIR not in sys.path:
     sys.path.insert(0, BACKEND_DIR)
 
-from app import create_app  # type: ignore
-from vercel_wsgi import handle  # type: ignore
+from app import create_app
 
-flask_app = create_app()
+# Create the Flask app instance
+app = create_app()
 
-def handler(request, *args, **kwargs):
-    return handle(flask_app, request, *args, **kwargs)
+# This is the entry point for Vercel
+def handler(event, context):
+    from vercel_wsgi import handle
+    return handle(app, event, context)
 
 
