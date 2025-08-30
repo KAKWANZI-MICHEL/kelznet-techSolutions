@@ -75,7 +75,10 @@ const DashboardContent = ({ activePage, setActivePage }) => {
       };
     }
     
-    setTrends(newTrends);
+    setTrends(prevTrends => ({
+      ...prevTrends,
+      ...newTrends
+    }));
   }, []);
 
   // Fetch real bookings from backend API
@@ -291,8 +294,8 @@ const DashboardContent = ({ activePage, setActivePage }) => {
           <div className="stat-content">
             <h3>Performance</h3>
             <div className="stat-number">{stats.performance}%</div>
-            <div className={`stat-trend ${trends.performance.direction}`}>
-              {trends.performance.percentage > 0 ? `${trends.performance.direction === 'positive' ? '+' : '-'}${trends.performance.percentage}%` : '0%'} improvement
+            <div className={`stat-trend ${trends.performance?.direction || 'neutral'}`}>
+              {trends.performance ? `${trends.performance.direction === 'positive' ? '+' : trends.performance.direction === 'negative' ? '-' : ''}${trends.performance.percentage}% improvement` : '...'}
             </div>
           </div>
         </div>
