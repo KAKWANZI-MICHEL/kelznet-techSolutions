@@ -14,12 +14,26 @@ def create_app():
     jwt.init_app(app)
     cors.init_app(app, resources={
         r"/v1/*": {
-            "origins": ["http://localhost:3000", "http://127.0.0.1:3000"],
+            "origins": [
+                "http://localhost:3000",
+                "http://127.0.0.1:3000",
+                "https://kelznettechsolutions.com",
+                "http://kelznettechsolutions.com",
+                "http://198.251.84.200",
+                "https://kelznet-backend.vercel.app"
+            ],
             "allow_headers": ["Content-Type", "Authorization"],
             "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
         },
         r"/manual": {
-            "origins": ["http://localhost:3000", "http://127.0.0.1:3000"],
+            "origins": [
+                "http://localhost:3000",
+                "http://127.0.0.1:3000",
+                "https://kelznettechsolutions.com",
+                "http://kelznettechsolutions.com",
+                "http://198.251.84.200",
+                "https://kelznet-backend.vercel.app"
+            ],
             "allow_headers": ["Content-Type", "Authorization"], 
             "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
         }
