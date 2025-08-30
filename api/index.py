@@ -9,13 +9,13 @@ if BACKEND_DIR not in sys.path:
     sys.path.insert(0, BACKEND_DIR)
 
 from app import create_app
+from vercel_wsgi import handle
 
 # Create the Flask app instance
-app = create_app()
+flask_app = create_app()
 
-# This is the entry point for Vercel
-def handler(event, context):
-    from vercel_wsgi import handle
-    return handle(app, event, context)
+# Vercel serverless function handler
+def handler(request, *args):
+    return handle(flask_app, request)
 
 
