@@ -1,7 +1,7 @@
 # controllers/about_controller.py
 
 from flask import Blueprint, render_template, request, jsonify, flash, redirect, url_for
-from app import db
+from app.extensions import db
 from app.model.about import About  # Adjust import path if needed
 import os
 from werkzeug.utils import secure_filename

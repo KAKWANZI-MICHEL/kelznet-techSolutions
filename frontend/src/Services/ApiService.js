@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_URL =
   process.env.NODE_ENV === "production"
-    ? "/api/v1"
+    ? (process.env.REACT_APP_API_BASE || "/kelznet-backend/v1")
     : "http://127.0.0.1:5000/v1";
 
 // Base URLs

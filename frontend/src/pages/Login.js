@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
       const res = await axios.post(`${API_BASE}/auth/login`, {
         email,
         password

@@ -18,7 +18,7 @@ const AddBookingModal = ({ closeModal, refreshBookings }) => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+        const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
         const response = await axios.get(`${API_BASE}/service_bp/services`);
         if (response.data && response.data.services) {
           setServices(response.data.services);
@@ -47,7 +47,7 @@ const AddBookingModal = ({ closeModal, refreshBookings }) => {
     }
 
     try {
-      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
       const response = await axios.post(`${API_BASE.replace('/v1','')}/v1/bookings`, formData);
       setSuccess(response.data.message || 'Booking created successfully!');
       

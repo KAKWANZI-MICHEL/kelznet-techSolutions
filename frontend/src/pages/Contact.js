@@ -65,7 +65,7 @@ const ContactUs = () => {
         message: `${formData.message}\n\nAddress: ${formData.address}\nPhone: ${formData.phone}`
       };
 
-      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
       const response = await axios.post(`${API_BASE}/contact_bp/contact`, dataToSend);
       
       if (response.status === 201) {

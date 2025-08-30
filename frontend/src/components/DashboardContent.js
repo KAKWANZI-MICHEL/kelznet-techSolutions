@@ -84,7 +84,7 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch real bookings from backend API
   const fetchBookings = useCallback(async () => {
     try {
-      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
       const response = await axios.get(`${API_BASE}/bookings`);
       const bookingsData = response.data.map(booking => ({
         id: booking.booking_id,
@@ -117,7 +117,7 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch users from backend API
   const fetchUsers = useCallback(async () => {
     try {
-      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
       const response = await axios.get(`${API_BASE}/user_bp/users`);
       const usersData = response.data;
       setStats(prevStats => {
@@ -141,7 +141,7 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch services from backend API
   const fetchServices = useCallback(async () => {
     try {
-      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
       const response = await axios.get(`${API_BASE}/service_bp/services`);
       const servicesData = response.data.services;
     setStats(prevStats => ({
@@ -157,7 +157,7 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch performance data from backend API
   const fetchPerformance = useCallback(async () => {
     try {
-      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
       const response = await axios.get(`${API_BASE.replace('/v1','')}/v1/performance/booking-verification`);
       const performanceData = response.data;
       
@@ -181,7 +181,7 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   // Fetch contact messages from backend API
   const fetchMessages = useCallback(async () => {
     try {
-      const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+      const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
       const response = await axios.get(`${API_BASE}/contact_bp/contact`);
       const messagesData = response.data.messages.map(msg => ({
         id: msg.id,
@@ -532,7 +532,7 @@ const DashboardContent = ({ activePage, setActivePage }) => {
   const MessagesPage = () => {
     const handleDeleteMessage = async (messageId) => {
       try {
-        const API_BASE = process.env.NODE_ENV === 'production' ? '/api/v1' : 'http://127.0.0.1:5000/v1';
+        const API_BASE = process.env.NODE_ENV === 'production' ? '/kelznet-backend/v1' : 'http://127.0.0.1:5000/v1';
         await axios.delete(`${API_BASE}/contact_bp/contact/${messageId}`);
         fetchMessages(); // Refresh messages after deletion
       } catch (error) {
